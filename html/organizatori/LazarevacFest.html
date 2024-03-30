@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="sr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Lazarevac Fest</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="icon" type="image/x-icon" href="/slike/favicon.png">
+        <link href="/css/projekat.css" rel="stylesheet">
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-black text-white px-5">
+            <a class="navbar-brand">
+                <div class="d-flex align-items-center justify-content-center">
+                    <img src="/slike/favicon.png" width="50" height="50" class="img-fluid align-right" alt="Evento-favicon ikonica">
+                    <span style="font-size: 30px; margin-left:10px; font-family: Roboto;">Evento</span>
+                </div>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/html/Glavna stranica.html">Meni</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/html/O nama.html">O nama</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#Prijava">Prijava</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="signup-link" href="#signup-popup">Registracija</a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0 mx-2">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Unesite nešto..." aria-label="Search">
+                </form>
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pronađite</button>
+            </div>
+        </nav>
+        <div class="container">
+            <!-- Organizatori -->
+            <h2 class="my-4">Organizatori</h2>
+            <div class="row row-cols-1 row-cols-md-2 g-4">
+                <!-- Organizatori se generišu dinamički -->
+            </div>
+
+            <!-- Događaji -->
+            <h2 class="my-4">Događaji</h2>
+            <div class="accordion" id="accordionEvents" style="margin-bottom: 100px;">
+                <!-- Događaji se generišu dinamički -->
+            </div>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
+        <script>
+            // Podaci o organizatorima
+            var organizatori = {
+                "-MNQg8Nd8YPRs-5Kbgqu": {
+                    "naziv": "Lazarevac Fest",
+                    "adresa": "Karađorđeva 12, Lazarevac, 11550",
+                    "godinaOsnivanja": "2018",
+                    "logo": "https://i.imgur.com/NhAzBBF.jpeg",
+                    "kontaktTelefon": "014/7552-322",
+                    "email": "office@lazarevacmusicdays.rs",
+                    "festivali": "-MNVEu6iMr2EFlQO6TW61"
+                },
+            };
+
+            // Podaci o događajima
+            var dogadjaji = {
+                "-MNQftJa4rskH-dBqE9Z5": {
+                    "naziv": "Festival Jadranskih Zvjezda",
+                    "opis": "U srcu Kušadasija, ovaj festival okuplja vrhunske izvođače iz regije i svijeta, obećavajući nezaboravne noći pod zvezdama. Uživajte u muzici, plesu i umetničkim performansima uz more.",
+                    "slike": [
+                        "https://i.imgur.com/Xr7tC1k.jpeg",
+                        "https://i.imgur.com/9O1Q9.jpeg",
+                        "https://i.imgur.com/ce5xcAr.jpeg",
+                        "https://i.imgur.com/cQkZ9iH.jpeg"
+                    ],
+                    "tip": "Muzički",
+                    "prevoz": "Avion",
+                    "cena": "45000",
+                    "maxOsoba": "1500"
+                },
+                "-MNQftJa4rskH-dBqE9Z6": {
+                    "naziv": "Marmaris Međunarodni Filmski Karneval",
+                    "opis": "Doživite čarobnu atmosferu filmskih priča na otvorenom u Marmarisu. Ovaj filmski karneval predstavlja selekciju domaćih i stranih filmskih ostvarenja, upotpunjenu radionicama i gostovanjima poznatih filmskih stvaralaca.",
+                    "slike": [
+                        "https://i.imgur.com/G2CpQ7G.jpeg",
+                        "https://i.imgur.com/IDf3fDZ.jpeg",
+                        "https://i.imgur.com/QjTeoNa.jpeg",
+                        "https://i.imgur.com/7EFaYUX.jpeg"
+                    ],
+                    "tip": "Filmski",
+                    "prevoz": "Avion",
+                    "cena": "52000",
+                    "maxOsoba": "200"
+                },
+                "-MNQftJa4rskH-dBqE9Z7": {
+                    "naziv": "Belek Gurmanski Festival",
+                    "opis": "Zaronite u svijet ukusa na Gurmanskom festivalu u Beleku. Ovo jedinstveno kulinarsko iskustvo spaja tradicionalne ukuse sa modernim kulinarskim trendovima, uz učešće renomiranih šefova kuhinja.",
+                    "slike": [
+                        "https://i.imgur.com/exbQ5PA.jpeg",
+                        "https://i.imgur.com/bO54Wzy.jpeg",
+                        "https://i.imgur.com/WmAYEz0.jpeg"
+                    ],
+                    "tip": "Gastronomski",
+                    "prevoz": "Avion",
+                    "cena": "60000",
+                    "maxOsoba": "500"
+                },
+                "-MNQftJa4rskH-dBqE9Z8": {
+                    "naziv": "Antika Fest Side",
+                    "opis": "Oživite duh drevne Side na Antika Festu, gdje istorija susreće modernu kulturu. Festival karakterišu dramatične rekonstrukcije, muzičke numere i autentične prodavnice.",
+                    "slike": [
+                        "https://i.imgur.com/4LRGGyb.jpeg",
+                        "https://i.imgur.com/PgVcwu1.jpeg",
+                        "https://i.imgur.com/6HXzmSc.jpeg",
+                        "https://i.imgur.com/Gm46ZVU.jpeg",
+                        "https://i.imgur.com/hFhqj6u.jpeg"
+                    ],
+                    "tip": "Edukativni",
+                    "prevoz": "Avion",
+                    "cena": "36000",
+                    "maxOsoba": "500"
+                },
+                "-MNQftJa4rskH-dBqE9Z9": {
+                    "naziv": "Rimski Festival Svetlosti",
+                    "opis": "Doživite čaroliju večnog grada tokom Rimskog Festivala Svetlosti. Ovaj događaj transformiše gradsko jezgro spektakularnim svetlosnim instalacijama i umetničkim projekcijama.",
+                    "slike": [
+                        "https://i.imgur.com/mHY2Ayb.jpeg",
+                        "https://i.imgur.com/bsDUf1e.jpeg",
+                        "https://i.imgur.com/Jaf1QAP.jpeg",
+                        "https://i.imgur.com/JmOPk9F.jpeg"
+                    ],
+                    "tip": "Umetnički",
+                    "prevoz": "Autobus",
+                    "cena": "28000",
+                    "maxOsoba": "220"
+                },
+                "-MNQftJa4rskH-dBqE9K0": {
+                    "naziv": "Milanski Festival Mode",
+                    "opis": "Milanski Festival Mode predstavlja epicentar svetskih trendova, gdje se poznati dizajneri i nadolazeći talenti susreću da pokažu svoje najnovije kolekcije.",
+                    "slike": [
+                        "https://i.imgur.com/Fia7una.jpeg",
+                        "https://i.imgur.com/g38s2Um.jpeg",
+                        "https://i.imgur.com/uyCP5UY.jpeg",
+                        "https://i.imgur.com/0eS4nvr.jpeg"
+                    ],
+                    "tip": "Umetnički",
+                    "prevoz": "Autobus",
+                    "cena": "50000",
+                    "maxOsoba": "800"
+                },
+                "-MNQftJa4rskH-dBqE9K1": {
+                    "naziv": "Venecijanski Festival Umjetnosti",
+                    "opis": "Otkrijte čari Venecije kroz njen Festival Umjetnosti, praznik vizuelnih, izvođačkih i digitalnih umetnosti koji privlači umetnike i posetioce iz celog sveta.",
+                    "slike": [
+                        "https://i.imgur.com/qIL83Vn.jpeg",
+                        "https://i.imgur.com/AQGagK9.jpeg",
+                        "https://i.imgur.com/S1CHGHU.jpeg",
+                        "https://i.imgur.com/UptsBj2.jpeg",
+                        "https://i.imgur.com/J7uh4u3.jpeg",
+                        "https://i.imgur.com/5kMKf8Q.jpeg",
+                        "https://i.imgur.com/7twbq9o.jpeg",
+                        "https://i.imgur.com/2hNKHDR.jpeg",
+                        "https://i.imgur.com/ePvy1.jpeg"
+                    ],
+                    "tip": "Umetnički",
+                    "prevoz": "Autobus",
+                    "cena": "32000",
+                    "maxOsoba": "420"
+                }
+            };
+
+            // Generisanje kartica za organizatore
+            var organizatoriContainer = document.querySelector('.row.row-cols-1.row-cols-md-2.g-4');
+            for (var key in organizatori) {
+                if (organizatori.hasOwnProperty(key)) {
+                    var organizator = organizatori[key];
+                    var card = `
+                        <div class="col">
+                            <div class="card">
+                                <img src="${organizator.logo}" class="card-img-top" alt="Logo">
+                                <div class="card-body">
+                                    <h5 class="card-title">${organizator.naziv}</h5>
+                                    <p class="card-text">Adresa: ${organizator.adresa}</p>
+                                    <p class="card-text">Godina Osnivanja: ${organizator.godinaOsnivanja}</p>
+                                    <p class="card-text">Kontakt Telefon: ${organizator.kontaktTelefon}</p>
+                                    <p class="card-text">Email: ${organizator.email}</p>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    organizatoriContainer.innerHTML += card;
+                }
+            }
+
+            // Generisanje akordeonskih panela za događaje
+            var dogadjajiContainer = document.querySelector('.accordion#accordionEvents');
+            for (var key in dogadjaji) {
+                if (dogadjaji.hasOwnProperty(key)) {
+                    var dogadjaj = dogadjaji[key];
+                    var panel = `
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="heading${key}">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${key}" aria-expanded="true" aria-controls="collapse${key}">
+                                    <h5>${dogadjaj.naziv}</h5>
+                                </button>
+                            </h2>
+                            <div id="collapse${key}" class="accordion-collapse collapse" aria-labelledby="heading${key}" data-bs-parent="#accordionEvents">
+                                <div class="accordion-body">
+                                    <a href="/html/organizatori/Lazarevac Fest/${dogadjaj.naziv}.html">${dogadjaj.naziv}</a>
+                                    <p>${dogadjaj.opis}</p>
+                                    <p>Tip: ${dogadjaj.tip}</p>
+                                    <p>Prevoz: ${dogadjaj.prevoz}</p>
+                                    <p>Cena: ${dogadjaj.cena}</p>
+                                    <p>Max Osoba: ${dogadjaj.maxOsoba}</p>
+                                    <div class="row row-cols-1 row-cols-md-2 g-4">
+                                        <!-- Slike događaja -->
+                                        ${dogadjaj.slike.map(slika => `<img src="${slika}" alt="Slika događaja">`).join('')}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    dogadjajiContainer.innerHTML += panel;
+                }
+            }
+        </script>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    </body>
+</html>
