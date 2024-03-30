@@ -1,0 +1,202 @@
+html, body {
+    overflow-x: hidden;
+    background: url('/slike/pozadina.jpg');
+    background-repeat: no-repeat;
+    background-size: cover; 
+    background-attachment: fixed;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.pictures {
+    background-image: url('/slike/festival_pr1.jpg');
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: auto;
+}
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 9999; /* Ensure modal appears in front of other content */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.8);
+}
+
+.modal-content {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: black;
+    width: 80%;
+    height: 80%;
+}
+
+.close {
+    color: white;
+    font-size: 50px;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    cursor: pointer;
+}
+
+.row.align-items-center {
+    min-height: 100vh; 
+}
+
+.d-flex {
+    display: flex;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.justify-content-center {
+    justify-content: center;
+}
+
+.h-100 {
+    height: 100%;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.dropdown-menu {
+    margin-top: 0;
+}
+.card {
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.card-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.card-description {
+    font-size: 14px;
+    color: #888888;
+    margin-bottom: 10px;
+}
+
+.card-button {
+    background-color: #007bff;
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 3px;
+    text-decoration: none;
+}
+
+.card-button:hover {
+    background-color: #0056b3;
+}
+.card-img-top {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+.prijava {
+    text-align: left; 
+    margin-top: 100px; 
+    margin-bottom: 100px; 
+    margin-left: 200px;
+}
+
+input[type="email"],
+        input[type="password"] {
+            border-radius: 20px; 
+            border: 1px solid #ccc; 
+            padding: 8px 12px; 
+            margin-bottom: 10px; 
+        }
+
+.btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #45a049;
+}
+
+.kontakt {
+    background-color: #f8f9fa; 
+    padding: 20px; 
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.kontakt h2 {
+    color: #333; 
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.kontakt p {
+    color: #555; 
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+.kontakt ul {
+    list-style-type: none; 
+    padding: 0;
+    margin: 0;
+}
+
+.kontakt ul li {
+    color: #777; 
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.kontakt ul li strong {
+    color: #333; 
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 998;
+    display: none;
+}

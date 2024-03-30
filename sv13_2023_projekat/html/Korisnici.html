@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Podaci o korisnicima</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="/slike/favicon.png">
+    <link href="/css/projekat.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-black text-white px-5">
+        <a class="navbar-brand">
+            <div class="d-flex align-items-center justify-content-center">
+                <img src="/slike/favicon.png" width="50" height="50" class="img-fluid align-right" alt="Evento-favicon ikonica">
+                <span style="font-size: 30px; margin-left:10px; font-family: Roboto;">Evento</span>
+            </div>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="Glavna stranica.html">Meni</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="O nama.html">O nama</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#Prijava">Prijava</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="signup-link" href="#signup-popup">Registracija</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0 mx-2">
+                <input class="form-control mr-sm-2" type="search" placeholder="Unesite nešto..." aria-label="Search">
+            </form>
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pronađite</button>
+        </div>
+    </nav>
+        <div class="container">
+            <h2 class="my-4">Korisnici</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Korisničko Ime</th>
+                        <th>Ime</th>
+                        <th>Prezime</th>
+                        <th>Email</th>
+                        <th>Datum Rođenja</th>
+                        <th>Adresa</th>
+                        <th>Telefon</th>
+                        <th>Zanimanje</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Table rows -->
+                    <tr>
+                        <td>petar_p</td>
+                        <td>Petar</td>
+                        <td>Pavlović</td>
+                        <td>petar.pavlovic@example.com</td>
+                        <td>1994-10-22</td>
+                        <td>Bulevar Oslobođenja 101, Novi Sad, 21000</td>
+                        <td>061123123</td>
+                        <td>Softverski inženjer</td>
+                    </tr>
+                    <tr>
+                        <td>jovana_j</td>
+                        <td>Jovana</td>
+                        <td>Janković</td>
+                        <td>jovana.jankovic@example.com</td>
+                        <td>1982-05-05</td>
+                        <td>Nikole Pašića 15, Zrenjanin, 23000</td>
+                        <td>062987987</td>
+                        <td>Grafički dizajner</td>
+                    </tr>
+                    <tr>
+                        <td>markom</td>
+                        <td>Marko</td>
+                        <td>Marić</td>
+                        <td>marko.maric@example.com</td>
+                        <td>1990-09-17</td>
+                        <td>Knez Mihailova 22, Beograd, 11000</td>
+                        <td>063456456</td>
+                        <td>Projektni menadžer</td>
+                    </tr>
+                    <tr>
+                        <td>filipf</td>
+                        <td>Filip</td>
+                        <td>Frušić</td>
+                        <td>filip.frusic@example.com</td>
+                        <td>1973-03-10</td>
+                        <td>Temerinska 33, Novi Sad, 21000</td>
+                        <td>064987987</td>
+                        <td>Arhitekta</td>
+                    </tr>
+                    <tr>
+                        <td>tijanat</td>
+                        <td>Tijana</td>
+                        <td>Trifunović</td>
+                        <td>tijana.trifunovic@example.com</td>
+                        <td>1998-06-29</td>
+                        <td>Cara Dušana 8, Zrenjanin, 23000</td>
+                        <td>065321321</td>
+                        <td>Web developer</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>

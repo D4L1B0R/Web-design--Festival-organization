@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="sr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> Etno Srbija</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="icon" type="image/x-icon" href="/slike/favicon.png">
+        <link href="/css/projekat.css" rel="stylesheet">
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-black text-white px-5">
+            <a class="navbar-brand">
+                <div class="d-flex align-items-center justify-content-center">
+                    <img src="/slike/favicon.png" width="50" height="50" class="img-fluid align-right" alt="Evento-favicon ikonica">
+                    <span style="font-size: 30px; margin-left:10px; font-family: Roboto;">Evento</span>
+                </div>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/html/Glavna stranica.html">Meni</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/html/O nama.html">O nama</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#Prijava">Prijava</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="signup-link" href="#signup-popup">Registracija</a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0 mx-2">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Unesite nešto..." aria-label="Search">
+                </form>
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pronađite</button>
+            </div>
+        </nav>
+        <div class="container">
+            <!-- Organizatori -->
+            <h2 class="my-4">Organizatori</h2>
+            <div class="row row-cols-1 row-cols-md-2 g-4">
+                <!-- Organizatori se generišu dinamički -->
+            </div>
+
+            <!-- Događaji -->
+            <h2 class="my-4">Događaji</h2>
+            <div class="accordion" id="accordionEvents" style="margin-bottom: 100px;">
+                <!-- Događaji se generišu dinamički -->
+            </div>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
+        <script>
+            // Podaci o organizatorima
+            var organizatori = {
+                "-MNQftJa4rskH-dBqE9Z": {
+                    "naziv": "Etno Srbija",
+                    "adresa": "Vojvode Stepe 321, Beograd, 11000",
+                    "godinaOsnivanja": "2010",
+                    "logo": "https://i.imgur.com/jsFrKCn.jpeg",
+                    "kontaktTelefon": "011/4223-690",
+                    "email": "info@etnosrbija.rs",
+                    "festivali": "-MNVEu6iMr2EFlQO6TW60"
+                },
+            };
+
+            // Podaci o događajima
+            var dogadjaji = {
+                "-MNQftJa4rskH-dBqF9Z0": {
+                    "naziv": "Festival Grčkih Melodija",
+                    "opis": "Istražite bogatstvo grčke muzičke tradicije kroz niz koncerata i radionica, gde će vas voditi kroz istoriju grčke muzike, od antike do modernih dana, uz prelepi ambijent Sitonije.",
+                    "slike": [
+                        "https://i.imgur.com/LMOgMnP.jpeg",
+                        "https://i.imgur.com/yBtIoEE.jpeg",
+                        "https://i.imgur.com/aHRcuqe.jpeg",
+                        "https://i.imgur.com/HxEZ2EO.jpeg",
+                        "https://i.imgur.com/WhhEFXe.jpeg"
+                    ],
+                    "tip": "Muzički",
+                    "prevoz": "Autobus",
+                    "cena": "1500",
+                    "maxOsoba": "300"
+                },
+                "-MNQftJa4rskH-dBqF9Z1": {
+                    "naziv": "Atoski Slikarski Dnevnik",
+                    "opis": "Pridružite se umetnicima na Atosu dok slikaju inspirisani prirodom i monaškim životom. Ovaj slikarski maraton je prilika za sve posetioce da se upuste u kreativnost i razmene iskustva sa umetnicima.",
+                    "slike": [
+                        "https://i.imgur.com/13NPfCE.jpeg",
+                        "https://i.imgur.com/elM9ZuF.jpeg",
+                        "https://i.imgur.com/ljLJJPc.jpeg",
+                        "https://i.imgur.com/Ddo6ETm.jpeg"
+                    ],
+                    "tip": "Umetnički",
+                    "prevoz": "Sopstveni",
+                    "cena": "2500",
+                    "maxOsoba": "200"
+                },
+                "-MNQftJa4rskH-dBqF9Z2": {
+                    "naziv": "Karneval u Platamonu",
+                    "opis": "Platamon se pretvara u živopisno središte kulture i zabave sa karnevalom koji privlači izvođače i posetioce iz celog sveta. Uživajte u muzici, plesu, umetnosti i tradicionalnoj kuhinji.",
+                    "slike": [
+                        "https://i.imgur.com/zHG54w5.jpeg",
+                        "https://i.imgur.com/UhJy3mO.jpeg",
+                        "https://i.imgur.com/oNkVgeB.jpeg",
+                        "https://i.imgur.com/AmAjjp9.jpeg"
+                    ],
+                    "tip": "Muzički",
+                    "prevoz": "Avion",
+                    "cena": "2000",
+                    "maxOsoba": "500"
+                },
+                "-MNQftJa4rskH-dBqF9Z3": {
+                    "naziv": "Egejske Kulturne Noći",
+                    "opis": "Provedite večeri uživajući u raznolikom programu koji uključuje muzičke nastupe, tradicionalni ples i priče pod zvezdanim nebom Sitonije. Savršena kombinacija opuštanja i kulturnog obogaćivanja.",
+                    "slike": [
+                        "https://i.imgur.com/S6vhQ9h.jpeg",
+                        "https://i.imgur.com/etlD1v9.jpeg",
+                        "https://i.imgur.com/RXo8fpd.jpeg",
+                        "https://i.imgur.com/38DNu92.jpeg"
+                    ],
+                    "tip": "Muzički",
+                    "prevoz": "Autobus",
+                    "cena": "24784",
+                    "maxOsoba": "41"
+                },
+                "-MNQftJa4rskH-dBqF9Z4": {
+                    "naziv": "Vrasna Etno Festival",
+                    "opis": "Oživite duh tradicionalne Grčke na Etno Festivalu u Nea Vrasni, gde lokalna zajednica predstavlja svoju kulturu kroz muziku, ples, i gastronomiju. Istinski doživljaj grčkog gostoprimstva i kulture.",
+                    "slike": [
+                        "https://i.imgur.com/QORUNqY.jpeg",
+                        "https://i.imgur.com/yW1f61r.jpeg",
+                        "https://i.imgur.com/dzDnwie.jpeg"
+                    ],
+                    "tip": "Umetnički",
+                    "prevoz": "Autobus",
+                    "cena": "18999",
+                    "maxOsoba": "40"
+                }
+                // Dodati ostale događaje
+            };
+
+            // Generisanje kartica za organizatore
+            var organizatoriContainer = document.querySelector('.row.row-cols-1.row-cols-md-2.g-4');
+            for (var key in organizatori) {
+                if (organizatori.hasOwnProperty(key)) {
+                    var organizator = organizatori[key];
+                    var card = `
+                        <div class="col">
+                            <div class="card">
+                                <img src="${organizator.logo}" class="card-img-top" alt="Logo">
+                                <div class="card-body">
+                                    <h5 class="card-title">${organizator.naziv}</h5>
+                                    <p class="card-text">Adresa: ${organizator.adresa}</p>
+                                    <p class="card-text">Godina Osnivanja: ${organizator.godinaOsnivanja}</p>
+                                    <p class="card-text">Kontakt Telefon: ${organizator.kontaktTelefon}</p>
+                                    <p class="card-text">Email: ${organizator.email}</p>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    organizatoriContainer.innerHTML += card;
+                }
+            }
+
+            // Generisanje akordeonskih panela za događaje
+            var dogadjajiContainer = document.querySelector('.accordion#accordionEvents');
+            for (var key in dogadjaji) {
+                if (dogadjaji.hasOwnProperty(key)) {
+                    var dogadjaj = dogadjaji[key];
+                    var panel = `
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="heading${key}">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${key}" aria-expanded="true" aria-controls="collapse${key}">
+                                    <h5>${dogadjaj.naziv}</h5>
+                                </button>
+                            </h2>
+                            <div id="collapse${key}" class="accordion-collapse collapse" aria-labelledby="heading${key}" data-bs-parent="#accordionEvents">
+                                <div class="accordion-body">
+                                    <a href="/html/organizatori/EtnoSrbija/${dogadjaj.naziv}.html">${dogadjaj.naziv}</a>
+                                    <p>${dogadjaj.opis}</p>
+                                    <p>Tip: ${dogadjaj.tip}</p>
+                                    <p>Prevoz: ${dogadjaj.prevoz}</p>
+                                    <p>Cena: ${dogadjaj.cena}</p>
+                                    <p>Max Osoba: ${dogadjaj.maxOsoba}</p>
+                                    <div class="row row-cols-1 row-cols-md-2 g-4">
+                                        <!-- Slike događaja -->
+                                        ${dogadjaj.slike.map(slika => `<img src="${slika}" alt="Slika događaja">`).join('')}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    dogadjajiContainer.innerHTML += panel;
+                }
+            }
+        </script>
+    </body>
+</html>
