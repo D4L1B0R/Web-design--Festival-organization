@@ -196,16 +196,6 @@
                 <img src="/slike/potvrda_identiteta.jpeg" alt="Slika za registraciju" style="width: 80%; height: 80%;margin-top: 30px; border-radius: 30px;">
             </div>
         </div>
-        <div class="kontakt" id="Kontakt">
-            <h2>Kontaktirajte nas</h2>
-            <p>Za sve informacije i upite u vezi sa organizacijom događaja, slobodno nas kontaktirajte:</p>
-            <ul>
-                <li><strong>Telefon:</strong> 011/123-4567</li>
-                <li><strong>Email:</strong> info@reorganizujtese.rs</li>
-                <li><strong>Adresa:</strong> Svetosavska 34, Novi Sad, 07289024</li>
-            </ul>
-            <p>Očekujemo Vaše pozive i poruke!</p>
-        </div>
         <div class="popup" id="signup-popup">
             <h2>Registrujte se</h2>
             <p>Molimo Vas da popunite sledeće informacije kako biste se registrovali:</p>
@@ -222,30 +212,17 @@
             </form>
         </div>
         <div class="overlay" id="overlay"></div>
-        <script>
-            // Function to show the pop-up
-            function showPopup() {
-                $("#signup-popup").fadeIn();
-                $("#overlay").fadeIn();
-            }
-
-            // Function to hide the pop-up
-            function hidePopup() {
-                $("#signup-popup").fadeOut();
-                $("#overlay").fadeOut();
-            }
-
-            // Event listener for the sign-up link
-            $("#signup-link").click(function (event) {
-                event.preventDefault();
-                showPopup();
-            });
-
-            // Event listener for the overlay (to close the pop-up when clicking outside of it)
-            $("#overlay").click(function () {
-                hidePopup();
-            });
-        </script>
+        <div class="kontakt" id="Kontakt">
+            <h2>Kontaktirajte nas</h2>
+            <p>Za sve informacije i upite u vezi sa organizacijom događaja, slobodno nas kontaktirajte:</p>
+            <ul>
+                <li><strong>Telefon:</strong> 011/123-4567</li>
+                <li><strong>Email:</strong> info@reorganizujtese.rs</li>
+                <li><strong>Adresa:</strong> Svetosavska 34, Novi Sad, 07289024</li>
+            </ul>
+            <p>Očekujemo Vaše pozive i poruke!</p>
+        </div>
+        <script src="Registracija.html"></script>
         <script src="/js/glavniJS.js"></script>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
