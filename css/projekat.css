@@ -1,5 +1,6 @@
 html, body {
     overflow-x: hidden;
+    top: 200;
     background: url('/slike/pozadina.jpg');
     color: white;
     background-repeat: no-repeat;
@@ -145,10 +146,34 @@ html, body {
 .dropdown-menu {
     margin-top: 0;
 }
+
+.videoThumbnail {
+    cursor: pointer; 
+    max-width: 100%; 
+    display: block; 
+    margin: auto; 
+    border-radius: 20px;
+}
+
+.videoThumbnail:hover {
+    transform: scale(1.05);
+}
+
+.potvrda {
+    width: 100%; 
+    height: auto; 
+    margin-top: 40px; 
+    border-radius: 30px;
+}
+
+.potvrda:hover{
+    transform: scale(1.05);
+}
+
 .card {
     background-color: #ffffff;
     border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 20px;
     margin-bottom: 20px;
 }
@@ -326,4 +351,24 @@ input[type="email"],
     background-color: transparent; 
     color: #fff;
     padding: 10px;
+}
+
+.carousel-indicators .active {
+    background-color: #ffffff;
+    transform: scale(1.1); 
+}
+
+.carousel-caption h5 {
+    font-family: 'Arial', sans-serif;
+    font-size: 20px;
+}
+
+.carousel-item-next.carousel-item-left,
+.carousel-item-prev.carousel-item-right {
+    -webkit-transition: 0.1s !important;
+    transition: 0.1s !important;
+}
+
+#carouselExampleIndicators {
+    background: rgba(0, 0, 0, 0.594);
 }
