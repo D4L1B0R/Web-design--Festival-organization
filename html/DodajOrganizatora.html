@@ -10,6 +10,90 @@
         <link rel="stylesheet" href="/css/o nama.css">
     </head>
     <body>
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Registracija</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" style="max-height: 400px; overflow-y: auto;">
+                        <form id="userForm">
+                            <div class="mb-3">
+                                <label for="username" class="form-label">Korisničko ime:</label>
+                                <input type="text" class="form-control" id="username" name="username">
+                            </div>
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Ime:</label>
+                                <input type="text" class="form-control" id="name" name="name">
+                            </div>
+                            <div class="mb-3">
+                                <label for="surname" class="form-label">Prezime:</label>
+                                <input type="text" class="form-control" id="surname" name="surname">
+                            </div>
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Lozinka:</label>
+                                <input type="text" class="form-control" id="password" name="password">
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email:</label>
+                                <input type="email" class="form-control" id="email" name="email">
+                            </div>
+                            <div class="mb-3">
+                                <label for="dob" class="form-label">Datum Rođenja:</label>
+                                <input type="date" class="form-control" id="dob" name="dob">
+                            </div>
+                            <div class="mb-3">
+                                <label for="address" class="form-label">Adresa:</label>
+                                <input type="text" class="form-control" id="address" name="address">
+                            </div>
+                            <div class="mb-3">
+                                <label for="phone" class="form-label">Telefon:</label>
+                                <input type="tel" class="form-control" id="phone" name="phone">
+                            </div>
+                            <div class="mb-3">
+                                <label for="occupation" class="form-label">Zanimanje:</label>
+                                <input type="text" class="form-control" id="occupation" name="occupation">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Zatvori</button>
+                    <button type="button" class="btn btn-primary">Sačuvaj izmene</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title2" id="exampleModalLabel">Prijava</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" style="max-height: 400px; overflow-y: auto;">
+                        <form id="userForm">
+                            <div class="mb-3">
+                                <label for="username" class="form-label">Korisničko ime:</label>
+                                <input type="text" class="form-control" id="username" name="username">
+                            </div>
+                            <div class="mb-3">
+                                <label for="username" class="form-label">Lozinka:</label>
+                                <input type="text" class="form-control" id="password" name="password">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Zatvori</button>
+                    <button type="button" class="btn btn-primary">Sačuvaj izmene</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <nav class="navbar navbar-expand-lg navbar-dark bg-black text-white px-5">
             <a class="navbar-brand">
                 <div class="d-flex align-items-center justify-content-center">
@@ -23,15 +107,21 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="Glavna stranica.html">Meni</a>
+                        <a class="nav-link" href="/html/Glavna stranica.html">Meni</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="signup-link-2" href="#signup-popup-2">Prijava</a>
+                        <a class="nav-link" href="/html/O nama.html">O nama</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="signup-link" href="#signup-popup">Registracija</a>
+                    <li>
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Saznajte više</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="/html/Organizatori.html">Izmena organizatora</a>
+                            <a class="dropdown-item" href="/html/Korisnici.html">Izmena korisnika</a>
+                        </div>
                     </li>
                 </ul>
+                <button type="button" class="btn-sign" data-toggle="modal" data-target="#exampleModal2">Prijava</button>
+                <button type="button" class="btn-reg" data-toggle="modal" data-target="#exampleModal">Registracija</button>
                 <form class="form-inline my-2 my-lg-0 mx-2">
                     <input class="form-control mr-sm-2" type="search" placeholder="Unesite nešto..." aria-label="Search">
                 </form>

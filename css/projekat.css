@@ -1,23 +1,60 @@
 html, body {
     overflow-x: hidden;
     background: url('/slike/pozadina.jpg');
+    color: white;
     background-repeat: no-repeat;
     background-size: cover; 
     background-attachment: fixed;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-.pictures {
-    background-image: url('/slike/festival_pr1.jpg');
+#exampleModal .modal-content {
+    background: fixed;
+    background-image: url('/slike/reg-pattern.avif');
     background-size: cover;
-    background-position: center;
-    width: 100%;
-    height: auto;
+}
+
+#exampleModal .modal-header {
+    color: black; 
+    font-weight: bold;
+    border-color: #000000;
+}
+
+#exampleModal .modal-body {
+    color: black; 
+    border-color: #000000;
+}
+
+#exampleModal .modal-footer {
+    border-color: #000000;
+}
+
+#exampleModal2 .modal-content {
+    background: fixed;
+    background-image: url('/slike/reg-pattern.avif');
+    background-size: cover;
+    height: 50%;
+}
+
+#exampleModal2 .modal-header {
+    color: black; 
+    font-weight: bold;
+    border-color: #000000;
+}
+
+#exampleModal2 .modal-body {
+    color: black; 
+    border-color: #000000;
+}
+
+#exampleModal2 .modal-footer {
+    border-color: #000000;
+    height: 22%;
 }
 .modal {
     display: none;
     position: fixed;
-    z-index: 9999; /* Ensure modal appears in front of other content */
+    z-index: 9999; 
     left: 0;
     top: 0;
     width: 100%;
@@ -32,8 +69,33 @@ html, body {
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: black;
-    width: 80%;
+    width: 40%;
     height: 80%;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    .modal-content {
+        width: 80%;
+    }
+}
+
+@media screen and (max-height: 600px) {
+    .modal-content {
+        height: 60%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .modal-content {
+        width: 90%;
+    }
+}
+
+@media screen and (max-height: 400px) {
+    .modal-content {
+        height: 50%;
+    }
 }
 
 .close {
@@ -43,6 +105,14 @@ html, body {
     top: 10px;
     right: 20px;
     cursor: pointer;
+    font-size: 20px;
+    background-color: red; 
+    border: none;
+    border-radius: 5px;
+}
+
+.close:hover {
+    transform: scale(1.1);
 }
 
 .row.align-items-center {
@@ -95,17 +165,23 @@ html, body {
     margin-bottom: 10px;
 }
 
-.card-button {
-    background-color: #007bff;
-    color: #ffffff;
-    padding: 10px 20px;
-    border-radius: 3px;
+.card-link {
     text-decoration: none;
 }
 
-.card-button:hover {
-    background-color: #0056b3;
+.card {
+    background-color: #ffffff;
+    color: #000000;
+    padding: 10px 20px;
+    border-radius: 10px;
+    text-decoration: none;
 }
+
+.card:hover {
+    transform: scale(1.05); 
+    border-radius: 10px;
+}
+
 .card-img-top {
     width: 100%;
     height: 200px;
@@ -127,10 +203,11 @@ input[type="email"],
         }
 
 .btn {
-    background-color: #4CAF50;
-    color: white;
+    background-color: transparent;
+    color: #11ba17;
+    border-width: 2px;
     padding: 10px 20px;
-    border: none;
+    border-color: #11ba17;
     border-radius: 20px;
     cursor: pointer;
     font-size: 16px;
@@ -138,7 +215,43 @@ input[type="email"],
 }
 
 .btn:hover {
-    background-color: #45a049;
+    background-color: #11ba17;
+    color: white;
+    border-color: #11ba17;
+}
+
+.btn-reg {
+    background-color: transparent;
+    color:  rgb(245, 13, 13);
+    padding: 10px 20px;
+    border-color: rgb(245, 13, 13);
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-left: 10px;
+    transition: background-color 0.3s;
+}
+
+.btn-reg:hover {
+    background-color: rgb(245, 13, 13);
+    color: rgb(0, 0, 0);
+}
+
+.btn-sign {
+    background-color: transparent;
+    color:  rgb(204, 12, 221);
+    padding: 10px 20px;
+    border-color: rgb(204, 12, 221);
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-left: 10px;
+    transition: background-color 0.3s;
+}
+
+.btn-sign:hover {
+    background-color: rgb(204, 12, 221);
+    color: rgb(0, 0, 0);
 }
 
 .kontakt {
@@ -198,4 +311,14 @@ input[type="email"],
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 998;
     display: none;
+}
+
+.carousel-caption {
+    position: absolute;
+    margin-bottom: 20px;
+    left: 0;
+    right: 0;
+    background-color: transparent; 
+    color: #fff;
+    padding: 10px;
 }
