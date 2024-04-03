@@ -159,6 +159,11 @@ html, body {
     margin-bottom: 10px;
 }
 
+#cards-main {
+    margin-bottom: 0px;
+    text-align: center;
+}
+
 .card-description {
     font-size: 14px;
     color: #888888;
