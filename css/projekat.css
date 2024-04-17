@@ -372,3 +372,8 @@ input[type="email"],
 #carouselExampleIndicators {
     background: rgba(0, 0, 0, 0.594);
 }
+
+.slike {
+    width: 100px;
+    height: 500px;
+}
