@@ -64,7 +64,7 @@ function createOrg(data) {
         <a class="btn" href="./Festivali/forma festivala.html?organizator=${obj}" style="margin-bottom: 10px;">Izmeni</a>
       </td>
       <td style="text-align: center;">
-        <button class="btn btn-danger" style="display: inline-block">Obriši</button>
+        <button class="btn btn-danger" id="del-btn" style="display: inline-block">Obriši</button>
       </td>
     </tr>
     `;
@@ -87,7 +87,6 @@ function createOrg(data) {
     dugme.addEventListener("click", (event) => {
       let id = event.target.getAttribute("data-festivalsID");
       fetchFestivals3(id);
-      btnAdd.classList.add("active");
     });
   }
 }
