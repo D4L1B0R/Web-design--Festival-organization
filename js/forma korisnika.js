@@ -17,6 +17,7 @@ xhttp.open("GET", firebaseDatabase + "/korisnici.json");
 xhttp.send();
 
 function create(korisnik) {
+  let brojKorisnika = 0;
   let innerHTML = `
   <table class="table table-bordered border-dark table-hover text-center text-capitalize mx-auto rounded">
     <thead>
@@ -35,6 +36,7 @@ function create(korisnik) {
     <tbody>`;
   for (let obj in korisnik) {
     let kor_obj = korisnik[obj];
+    brojKorisnika += 1;
     innerHTML += `
     <tr>
       <td style="text-align: center;">${kor_obj["korisnickoIme"]}</td>
@@ -49,7 +51,7 @@ function create(korisnik) {
         <a class="btn" href="./Korisnici/forma korisnika.html?korisnik=${obj}" style="margin-bottom: 10px;">Izmeni</a>
       </td>
       <td style="text-align: center;">
-        <button class="btn btn-danger" style="display: inline-block">Obriši</button>
+        <button class="btn btn-danger" id="del-btn-${brojKorisnika}" style="display: inline-block" onclick="geek()">Obriši</button>
       </td>
     </tr>
     `;
@@ -66,4 +68,25 @@ function create(korisnik) {
     </div>
     `;
   forma_korisnici.innerHTML = innerHTML;
+  for (let i = 1; i < brojKorisnika + 1; i++) {
+    document.getElementById(`del-btn-${i}`).addEventListener("click", function () {
+      geek();
+    });
+  }
+  function geek() {
+    let messageBox = document.getElementById("message-box");
+    let result = confirm("Da li ste sigurni da želite da obrišete korisnika?");
+    if (result === true) {
+        messageBox.textContent = "Korisnik je obrisan!";
+        messageBox.classList.add("show");
+        console.log("OK je pritisnuto!");
+    } else {
+        messageBox.textContent = "Korisnik nije obrisan!";
+        messageBox.classList.add("show");
+        console.log("Cancel je pritisnuto!");
+    }
+    setTimeout(function() {
+        messageBox.classList.remove("show");
+    }, 5000);
+  }
 };

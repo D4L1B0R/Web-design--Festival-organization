@@ -64,8 +64,18 @@ function create(festival) {
         <label for="opis" class="form-label">Opišite događaj:</label>
         <textarea placeholder="${festival["opis"]}"></textarea>
     </div>
-      <a type="button" class="btn" href="/html/Organizatori.html">Sačuvaj izmene</button>
+      <button type="button" class="btn" id="new-btn" style="display: inline-block" onclick="geek()">Sačuvaj izmene</button>
+      <a type="button" class="btn" href="/html/Organizatori.html">Vrati se nazad</a>
   </form>
   `;
   parent.innerHTML = innerHTML;
-}
+  document.getElementById(`new-btn`).addEventListener("click", function () {
+    let messageBox = document.getElementById("message-box");
+    messageBox.textContent = "Festival je uspešno izmenjen!";
+    messageBox.classList.add("show");
+    console.log("OK je pritisnuto!");
+    setTimeout(function() {
+        messageBox.classList.remove("show");
+    }, 5000);
+  });
+};

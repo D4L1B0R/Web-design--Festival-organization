@@ -50,21 +50,6 @@
         <footer>
             &copy; 2024 Agencija za Organizaciju Festivala. Sva prava zadržana.
         </footer>
-        <div class="popup" id="signup-popup">
-            <h2>Registrujte se</h2>
-            <p>Molimo Vas da popunite sledeće informacije kako biste se registrovali:</p>
-            <form action="/login" method="post">
-                <div>
-                    <label for="email" style="margin-bottom: 20px;">Email:</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div>
-                    <label for="password" style="margin-bottom: 20px;">Password:</label>
-                    <input type="password" id="password" name="password" required>
-                </div>
-                <a class="btn" type="button" href="Glavna stranica.html">Sign up</a>
-            </form>
-        </div>
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -115,8 +100,7 @@
                         </form>
                     </div>
                     <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Zatvori</button>
-                    <button type="button" class="btn btn-primary">Sačuvaj izmene</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Registruj se</button>
                     </div>
                 </div>
             </div>
@@ -137,14 +121,13 @@
                                 <input type="text" class="form-control" id="username" name="username">
                             </div>
                             <div class="mb-3">
-                                <label for="username" class="form-label">Lozinka:</label>
-                                <input type="text" class="form-control" id="password" name="password">
+                                <label for="password">Lozinka:</label>
+                                <input type="password" class="form-control" id="password" name="password" required>
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Zatvori</button>
-                    <button type="button" class="btn btn-primary">Sačuvaj izmene</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Prijavi se</button>
                     </div>
                 </div>
             </div>

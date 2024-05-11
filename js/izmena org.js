@@ -51,8 +51,18 @@ function createCard(organizator, obj) {
           <label for="email" class="form-label">Email:</label>
           <input type="email" class="form-control" id="email" name="email" placeholder="${organizator["email"]}">
       </div>
-      <a type="button" class="btn" href="/html/Organizatori.html">Sačuvaj izmene</button>
+        <button type="button" class="btn" id="new-btn" style="display: inline-block" onclick="geek()">Sačuvaj izmene</button>
+        <a type="button" class="btn" href="/html/Organizatori.html">Vrati se nazad</a>
   </form>
   `;
   parent.innerHTML = innerHTML;
+  document.getElementById(`new-btn`).addEventListener("click", function () {
+    let messageBox = document.getElementById("message-box");
+    messageBox.textContent = "Organizator je uspešno izmenjen!";
+    messageBox.classList.add("show");
+    console.log("OK je pritisnuto!");
+    setTimeout(function() {
+        messageBox.classList.remove("show");
+    }, 5000);
+  });
 }

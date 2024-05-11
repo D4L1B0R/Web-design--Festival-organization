@@ -34,6 +34,7 @@ function fetchFestivals3(festivals) {
 }
 
 function createOrg(data) {
+  let numberOfOrganizers = 0;
   let innerHTML = `
   <table class="table table-bordered border-dark table-hover text-center text-capitalize mx-auto rounded">
     <thead>
@@ -51,6 +52,7 @@ function createOrg(data) {
     <tbody>`;
   for (let obj in data) {
     let org_obj = data[obj];
+    numberOfOrganizers += 1;
     innerHTML += `
     <tr>
       <td style="text-align: center;">${org_obj["naziv"]}</td>
@@ -64,7 +66,7 @@ function createOrg(data) {
         <a class="btn" href="./Festivali/forma festivala.html?organizator=${obj}" style="margin-bottom: 10px;">Izmeni</a>
       </td>
       <td style="text-align: center;">
-        <button class="btn btn-danger" id="del-btn" style="display: inline-block">Obriši</button>
+        <button class="btn btn-danger" id="del-btn-${numberOfOrganizers}" style="display: inline-block" onclick="geek()">Obriši</button>
       </td>
     </tr>
     `;
@@ -82,6 +84,27 @@ function createOrg(data) {
     </div>
     `;
   tableOrg.innerHTML = innerHTML;
+  for (let i = 1; i < numberOfOrganizers + 1; i++) {
+    document.getElementById(`del-btn-${i}`).addEventListener('click', function() {
+        geek();
+    });
+  }
+  function geek() {
+    let messageBox = document.getElementById("message-box");
+    let result = confirm("Da li ste sigurni da želite da obrišete organizatora?");
+    if (result === true) {
+        messageBox.textContent = "Organizator je obrisan!";
+        messageBox.classList.add("show");
+        console.log("OK je pritisnuto!");
+    } else {
+        messageBox.textContent = "Organizator nije obrisan!";
+        messageBox.classList.add("show");
+        console.log("Cancel je pritisnuto!");
+    }
+    setTimeout(function() {
+        messageBox.classList.remove("show");
+    }, 5000);
+  }
   let sviBtnFestovi = document.getElementsByClassName("btn-fest");
   for (let dugme of sviBtnFestovi) {
     dugme.addEventListener("click", (event) => {
@@ -92,6 +115,7 @@ function createOrg(data) {
 }
 
 function createFest(festivals, org_fest) {
+  let numberOfFestivals = 0;
   let innerHTML = `<div class="row">`;
   innerHTML += `
   <h1 style="margin: 20px;">Podaci o festivalima korisnika</h1>
@@ -99,6 +123,7 @@ function createFest(festivals, org_fest) {
   `;
   for (let fest in festivals) {
     let value = festivals[fest];
+    numberOfFestivals += 1;
     innerHTML += `
     <div class="col-md-4 mb-4" style="margin: 100px;">
       <div class="card">
@@ -111,7 +136,7 @@ function createFest(festivals, org_fest) {
           <p class="card-text">Max osoba: ${value["maxOsoba"]}</p>
           <p class="card-text">Tip: ${value["tip"]}</p>
           <a class="btn" id="izmena-kor" href="./Festivali/IzmenaFestivala.html?organizator=${org_fest}&festival=${fest}">Izmeni</a>
-          <button class="btn btn-danger btnObrisiF">Obriši</button>
+          <button id="del-btns-${numberOfFestivals}" class="btn btn-danger" style="display: inline-block" onclick="geek1()">Obriši</button>
         </div>
       </div>
     </div>
@@ -119,4 +144,25 @@ function createFest(festivals, org_fest) {
   }
   innerHTML += `</div>`;
   tableFest.innerHTML = innerHTML;
+  for (let i = 1; i < numberOfFestivals + 1; i++) {
+    document.getElementById(`del-btns-${i}`).addEventListener('click', function() {
+        geek1();
+    });
+  }
+  function geek1() {
+    let messageBox1 = document.getElementById("message-box1");
+    let result = confirm("Da li ste sigurni da želite da obrišete festival?");
+    if (result === true) {
+        messageBox1.textContent = "Festival je obrisan!";
+        messageBox1.classList.add("show");
+        console.log("OK je pritisnuto!");
+    } else {
+        messageBox1.textContent = "Festival nije obrisan!";
+        messageBox1.classList.add("show");
+        console.log("Cancel je pritisnuto!");
+    }
+    setTimeout(function() {
+        messageBox1.classList.remove("show");
+    }, 5000);
+  }
 }

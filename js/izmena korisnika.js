@@ -63,8 +63,18 @@ function create(korisnik) {
           <label for="occupation" class="form-label">Zanimanje:</label>
           <input type="text" class="form-control" id="occupation" name="occupation" placeholder="${korisnik["zanimanje"]}">
       </div>
-      <a type="button" class="btn" href="/html/Korisnici.html">Sačuvaj izmene</button>
+      <button type="button" class="btn" id="new-btn" style="display: inline-block" onclick="geek()">Sačuvaj izmene</button>
+      <a type="button" class="btn" href="/html/Korisnici.html">Vrati se nazad</a>
   </form>
   `;
   parent.innerHTML = innerHTML;
+  document.getElementById(`new-btn`).addEventListener("click", function () {
+    let messageBox = document.getElementById("message-box");
+    messageBox.textContent = "Korisnik je uspešno izmenjen!";
+    messageBox.classList.add("show");
+    console.log("OK je pritisnuto!");
+    setTimeout(function() {
+        messageBox.classList.remove("show");
+    }, 5000);
+  });
 }
