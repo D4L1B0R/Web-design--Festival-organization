@@ -71,13 +71,21 @@ function create(korisnik) {
   forma_korisnici.innerHTML = innerHTML;
   for (let i = 1; i < brojKorisnika + 1; i++) {
     document.getElementById(`del-btn-${i}`).addEventListener("click", function () {
-      geek();
+      let number = 0;
+      for (let obj in korisnik) {
+        number +=1;
+        if (i == number) {
+          geek(obj);
+        }
+      }
     });
   }
-  function geek() {
+
+  function geek(UserId) {
     let messageBox = document.getElementById("message-box");
     let result = confirm("Da li ste sigurni da želite da obrišete korisnika?");
     if (result === true) {
+        deleteUser(UserId);
         messageBox.textContent = "Korisnik je obrisan!";
         messageBox.classList.add("show");
         console.log("OK je pritisnuto!");
@@ -89,5 +97,22 @@ function create(korisnik) {
     setTimeout(function() {
         messageBox.classList.remove("show");
     }, 5000);
+  }
+
+  function deleteUser(UserId) {
+    const xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4) {
+            if (this.status == 200) {
+                console.log("Organizator uspešno obrisan!");
+            } else {
+                console.error("Error:", this.status);
+                window.location.href = './html/Greška.html';
+            }
+        }
+    };
+    xhttp.open("DELETE", firebaseDatabase + `/korisnici/${UserId}.json`);
+    xhttp.send();
+  
   }
 };

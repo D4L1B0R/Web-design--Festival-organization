@@ -88,13 +88,21 @@ function createOrg(data) {
   tableOrg.innerHTML = innerHTML;
   for (let i = 1; i < numberOfOrganizers + 1; i++) {
     document.getElementById(`del-btn-${i}`).addEventListener('click', function() {
-        geek();
+      let number = 0;
+      for (let obj in data) {
+        number +=1;
+        if (i == number) {
+          geek(obj);
+        }
+      }
     });
   }
-  function geek() {
+
+  function geek(orgId) {
     let messageBox = document.getElementById("message-box");
     let result = confirm("Da li ste sigurni da želite da obrišete organizatora?");
     if (result === true) {
+        deleteOrganizer(orgId);
         messageBox.textContent = "Organizator je obrisan!";
         messageBox.classList.add("show");
         console.log("OK je pritisnuto!");
@@ -106,6 +114,23 @@ function createOrg(data) {
     setTimeout(function() {
         messageBox.classList.remove("show");
     }, 5000);
+  }
+
+  function deleteOrganizer(orgId) {
+    const xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4) {
+            if (this.status == 200) {
+                console.log("Organizator uspešno obrisan!");
+            } else {
+                console.error("Error:", this.status);
+                window.location.href = './html/Greška.html';
+            }
+        }
+    };
+    xhttp.open("DELETE", firebaseDatabase + `/organizatoriFestivala/${orgId}.json`);
+    xhttp.send();
+  
   }
   let sviBtnFestovi = document.getElementsByClassName("btn-fest");
   for (let dugme of sviBtnFestovi) {
@@ -148,23 +173,47 @@ function createFest(festivals, org_fest) {
   tableFest.innerHTML = innerHTML;
   for (let i = 1; i < numberOfFestivals + 1; i++) {
     document.getElementById(`del-btns-${i}`).addEventListener('click', function() {
-        geek1();
+      let number = 0;
+      for (let obj in festivals) {
+        number +=1;
+        if (i == number) {
+          geek1(org_fest, obj);
+        }
+      }
     });
   }
-  function geek1() {
-    let messageBox1 = document.getElementById("message-box1");
+
+  function geek1(orgId, festId) {
+    let messageBox = document.getElementById("message-box1");
     let result = confirm("Da li ste sigurni da želite da obrišete festival?");
     if (result === true) {
-        messageBox1.textContent = "Festival je obrisan!";
-        messageBox1.classList.add("show");
+        deleteFestival(orgId, festId);
+        messageBox.textContent = "Festival je obrisan!";
+        messageBox.classList.add("show");
         console.log("OK je pritisnuto!");
     } else {
-        messageBox1.textContent = "Festival nije obrisan!";
-        messageBox1.classList.add("show");
+        messageBox.textContent = "Festival nije obrisan!";
+        messageBox.classList.add("show");
         console.log("Cancel je pritisnuto!");
     }
     setTimeout(function() {
-        messageBox1.classList.remove("show");
+        messageBox.classList.remove("show");
     }, 5000);
+  }
+
+  function deleteFestival(orgId, festId) {
+    const xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4) {
+            if (this.status == 200) {
+                console.log("Festival uspešno obrisan!");
+            } else {
+                console.error("Error:", this.status);
+                window.location.href = './html/Greška.html';
+            }
+        }
+    };
+    xhttp.open("DELETE", firebaseDatabase + `/festivali/${orgId}/${festId}.json`);
+    xhttp.send();
   }
 }
