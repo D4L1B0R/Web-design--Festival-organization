@@ -41,7 +41,8 @@ xhttp.onreadystatechange = function () {
         }
       }
     } else {
-      console.log("Error fetching festivals:", this.status);
+      console.error("Error:", this.status);
+      window.location.href = './html/Greška.html';
     }
   }
 };

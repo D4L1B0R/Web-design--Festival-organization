@@ -12,7 +12,8 @@ xhttp.onreadystatechange = function () {
         createCard(organizator, obj);
       }
     } else {
-      console.log("Error");
+      console.error("Error:", this.status);
+      window.location.href = './html/Greška.html';
     }
   }
 };

@@ -8,7 +8,8 @@ xhttp.onreadystatechange = function () {
       let data = JSON.parse(this.responseText);
       createOrg(data);
     } else {
-      console.log("Error:", this.status);
+      console.error("Error:", this.status);
+      window.location.href = './html/Greška.html';
     }
   }
 };
@@ -24,7 +25,8 @@ function fetchFestivals3(festivals) {
         let data = JSON.parse(this.responseText);
         createFest(data, festivals);
       } else {
-        console.log("Error fetching festivals:", this.status);
+        console.error("Error:", this.status);
+        window.location.href = './html/Greška.html';
       }
     }
   };

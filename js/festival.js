@@ -20,6 +20,10 @@ xhttp.onreadystatechange = function () {
       console.log("Data:", data);
       create(data);
     }
+    else {
+      console.error("Error:", this.status);
+      window.location.href = './html/Greška.html';
+    }
   }
 };
 xhttp.open("GET", firebasedatabase + "/festivali/" + org + "/" + fest + ".json");

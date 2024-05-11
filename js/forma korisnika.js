@@ -8,7 +8,8 @@ xhttp.onreadystatechange = function () {
         let data = JSON.parse(this.responseText);
         create(data);
     } else {
-      console.log("Error:", this.status);
+      console.error("Error:", this.status);
+      window.location.href = './html/Greška.html';
     }
   }
 };
