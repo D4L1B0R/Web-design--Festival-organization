@@ -40,10 +40,10 @@
                     </li>
                 </ul>
                 <button type="button" class="btn-reg" data-toggle="modal" data-target="#exampleModal">Registracija</button>
-                <form class="form-inline my-2 my-lg-0 mx-2">
-                    <input class="form-control mr-sm-2" type="search" id="searchInput" placeholder="Unesite nešto..." aria-label="Search">
+                <form class="form-inline my-2 my-lg-0 mx-2" onsubmit="return false;">
+                    <input class="form-control mr-sm-2" type="search" id="searchInput" placeholder="Pretraga organizatora..." aria-label="Search">
                 </form>
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pronađite</button>
+                <button class="btn btn-outline-success my-2 my-sm-0" type="button" onclick="highlight()">Pronađite</button>
             </div>
         </nav>
         <div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-ride="carousel">
@@ -191,7 +191,7 @@
                     </form>
                 </div>
             </div>
-        </div>
+        </div>  
         <div class="message-box" id="message-box"></div>
         <div class="kontakt" id="Kontakt">
             <div class="row">
@@ -211,35 +211,33 @@
                     </div>
                 </div>
             </div>
-        </div>  
+        </div>
         <script>
-            // Function to highlight search keywords
-            function highlightSearchKeywords() {
-                const searchTerm = document.getElementById("searchInput").value.toLowerCase();
-                const searchResults = document.querySelectorAll('.search-result');
-        
-                searchResults.forEach(result => {
-                    const textContent = result.textContent.toLowerCase();
-                    const words = textContent.split(/\s+/);
-                    const highlightedWords = words.map(word => {
-                        if (word.includes(searchTerm)) {
-                            return `<span class="highlight">${word}</span>`;
-                        } else {
-                            return word;
-                        }
-                    });
-        
-                    result.innerHTML = highlightedWords.join(' ');
+            var originalContent = '';
+    
+            function highlight() {
+                var searchTerm = document.getElementById("searchInput").value.trim().toLowerCase();
+                var contentElements = document.querySelectorAll('.content');
+                originalContent = Array.from(contentElements).map(element => element.innerHTML);
+                contentElements.forEach(function(element) {
+                    var content = element.textContent.toLowerCase();
+                    if (content.includes(searchTerm) && searchTerm != '') {
+                        element.classList.add('highlight');
+                    } else if (searchTerm == '') {
+                        element.classList.remove('highlight');
+                    } else {
+                        element.classList.remove('highlight');
+                    }
+                });
+            };
+    
+            function clearHighlights() {
+                var contentElements = document.querySelectorAll('.content p');
+                contentElements.forEach(function(element, index) {
+                    element.classList.remove('highlight');
                 });
             }
-        
-            // Attach an event listener to the search input
-            document.getElementById("searchInput").addEventListener("input", highlightSearchKeywords);
-        
-            // Optionally, you can call the function initially to highlight any existing search results
-            highlightSearchKeywords();
         </script>
-        
         <script src="/js/glavniJS.js"></script>
         <script src="/js/glavnaStr.js"></script>
         <script src="/js/registracija.js"></script>

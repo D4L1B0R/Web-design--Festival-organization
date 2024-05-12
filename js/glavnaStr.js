@@ -29,7 +29,7 @@ function createCard(organizator, obj) {
             <div class="card">
                 <img src="${organizator["logo"]}" alt="${organizator["naziv"]}" class="card-img-top">
                 <div class="card-body">
-                    <h5 class="card-title" id="cards-main">${organizator["naziv"]}</h5>
+                    <h5 class="card-title content" style="text-align: center">${organizator["naziv"]}</h5>
                 </div>
             </div>
         </a>

@@ -110,10 +110,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="/html/Glavna stranica.html">Meni</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/html/O nama.html">O nama</a>
+                        <a class="nav-link" href="O nama.html">O nama</a>
                     </li>
                     <li>
                         <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Saznajte više</a>
@@ -123,15 +120,40 @@
                         </div>
                     </li>
                 </ul>
-                <button type="button" class="btn-sign" data-toggle="modal" data-target="#exampleModal2">Prijava</button>
                 <button type="button" class="btn-reg" data-toggle="modal" data-target="#exampleModal">Registracija</button>
-                <form class="form-inline my-2 my-lg-0 mx-2">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Unesite nešto..." aria-label="Search">
+                <form class="form-inline my-2 my-lg-0 mx-2" onsubmit="return false;">
+                    <input class="form-control mr-sm-2" type="search" id="searchInput" placeholder="Pretražite festival..." aria-label="Search">
                 </form>
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pronađite</button>
+                <button class="btn btn-outline-success my-2 my-sm-0" type="button" onclick="highlight()">Pronađite</button>
             </div>
         </nav>
         <div class="festivali"  style="margin-top: 200px" id="festival"></div>
+        <script>
+            var originalContent = '';
+    
+            function highlight() {
+                var searchTerm = document.getElementById("searchInput").value.trim().toLowerCase();
+                var contentElements = document.querySelectorAll('.content');
+                originalContent = Array.from(contentElements).map(element => element.innerHTML);
+                contentElements.forEach(function(element) {
+                    var content = element.textContent.toLowerCase();
+                    if (content.includes(searchTerm) && searchTerm != '') {
+                        element.classList.add('highlight');
+                    } else if (searchTerm == '') {
+                        element.classList.remove('highlight');
+                    } else {
+                        element.classList.remove('highlight');
+                    }
+                });
+            }
+    
+            function clearHighlights() {
+                var contentElements = document.querySelectorAll('.content p');
+                contentElements.forEach(function(element, index) {
+                    element.classList.remove('highlight');
+                });
+            }
+        </script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
         <script src="/js/festival.js"></script>
         <script src="/js/registracija.js"></script>

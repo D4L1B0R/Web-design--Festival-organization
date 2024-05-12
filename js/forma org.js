@@ -145,7 +145,7 @@ function createFest(festivals, org_fest) {
   let numberOfFestivals = 0;
   let innerHTML = `<div class="row">`;
   innerHTML += `
-  <h1 style="margin: 20px;">Podaci o festivalima korisnika</h1>
+  <h1 style="margin: 20px;">Podaci o festivalima</h1>
     <br/>
   `;
   for (let fest in festivals) {

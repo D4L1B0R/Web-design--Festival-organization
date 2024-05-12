@@ -34,10 +34,10 @@ function create(fest) {
     <div class="container1 mt-5">
         <div class="row">
             <div class="col-md-6 mb-4">
-                <h1>${fest["naziv"]}</h1>
+                <h1 class="content">${fest["naziv"]}</h1>
                 <br/>
                 <p>${fest["opis"]}</p>
-                <p>Tip: ${fest["tip"]}</p>
+                <p>Tip: <span class="content">${fest["tip"]}<span></p>
                 <p>Prevoz: ${fest["prevoz"]}</p>
                 <p>Cena: ${fest["cena"]}</p>
                 <p>max osoba: ${fest["maxOsoba"]}</p>

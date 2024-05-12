@@ -30,6 +30,7 @@ function handleFormSubmission() {
         adresa: document.getElementById("adresa").value,
         telefon: document.getElementById("telefon").value,
         zanimanje: document.getElementById("zanimanje").value,
+        lozinka: document.getElementById("lozinka").value,
     };
 
     if (!validatePhone(formData.telefon)) {
