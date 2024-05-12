@@ -1,24 +1,19 @@
-const firebasedatabase = "https://evento-13796-default-rtdb.europe-west1.firebasedatabase.app";
-document.getElementById("submit-btn").addEventListener("click", function(event) {
-    const formInputs = this.querySelectorAll('input');
-    let allInputsFilled = true;
-    
-    formInputs.forEach(input => {
-        if (!input.value) {
-            allInputsFilled = false;
-        }
-    });
+const firebasedatabase1 = "https://evento-13796-default-rtdb.europe-west1.firebasedatabase.app";
+document.getElementById("userForms").addEventListener("submit", function(event) {
+    const formInputs = Array.from(this.querySelectorAll("input"));
+    const allInputsFilled = formInputs.every(input => input.value !== "");
 
     if (!allInputsFilled) {
         event.preventDefault();
+        console.log("Popunite sva obavezna polja.");
     } else {
         event.preventDefault();
         handleFormSubmission(); 
     }
-});
+}); 
 
 function validatePhone(phone) {
-    return /^(\d{3})\/(\d{3,4}-\d{3,4})$/.test(phone);
+    return /^-?\d{1,10}$/.test(phone);
 }
 
 function validateEmail(email) {
@@ -27,15 +22,17 @@ function validateEmail(email) {
 
 function handleFormSubmission() {
     let formData = {
-        naziv: document.getElementById("naziv").value,
-        adresa: document.getElementById("adresa").value,
-        godinaRodjenja: document.getElementById("godinaRodjenja").value,
-        telefon: document.getElementById("telefon").value,
-        email: document.getElementById("em").value,
-        logo: document.getElementById("logo").value,
+        korisnickoIme: document.getElementById("korisnickoIme").value,
+          ime: document.getElementById("ime").value,
+          prezime: document.getElementById("prezime").value,
+          email: document.getElementById("email4").value,
+          datumRodjenja: document.getElementById("datumRodjenja").value,
+          adresa: document.getElementById("adresa").value,
+          telefon: document.getElementById("telefon").value,
+          zanimanje: document.getElementById("zanimanje").value,
     };
     if (!validatePhone(formData.telefon)) {
-        document.getElementById("phoneError").innerText = "Molimo unesite validan broj telefona u formatu 123/4567-890.";
+        document.getElementById("phoneError").innerText = "Molimo unesite validan broj telefona.";
         return;
     } else {
         document.getElementById("phoneError").innerText = "";
@@ -62,13 +59,13 @@ function updateDataInFirebase(formData) {
                 console.log("Telefon: " + formData.telefon);
                 console.log("Email: " + formData.email);
                 console.log("Logo: " + formData.logo);
-                window.location.href = '/html/Organizatori.html';
+                window.location.href = '/html/Korisnici.html';
             } else {
                 console.error("Error:", this.status);
                 window.location.href = './html/Greška.html';
             }
         }
     };
-    xhttp.open("POST", firebasedatabase + `/organizatoriFestivala/.json`);
+    xhttp.open("POST", firebasedatabase1 + `/korisnici/.json`);
     xhttp.send(JSON.stringify(formData));
 }

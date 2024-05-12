@@ -122,7 +122,13 @@ function updateDataInFirebase(data) {
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4) {
             if (this.status == 200) {
-                console.log("Uspešno izmenjeni podaci!");
+                console.log("naziv:", data.naziv);
+                console.log("tip:", data.tip);
+                console.log("prevoz:", data.prevoz);
+                console.log("cena:", data.cena);
+                console.log("maxOsoba:", data.maxOsoba);
+                console.log("opis:", data.opis);
+                
                 let messageBox = document.getElementById("message-box");
                 messageBox.textContent = "Festival je uspešno izmenjen!";
                 messageBox.classList.add("show");

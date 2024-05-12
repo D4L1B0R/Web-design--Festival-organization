@@ -34,7 +34,7 @@ html, body {
     background: fixed;
     background-image: url('/slike/reg-pattern.avif');
     background-size: cover;
-    height: 50%;
+    height: 70%;
 }
 
 #exampleModal2 .modal-header {
@@ -50,7 +50,7 @@ html, body {
 
 #exampleModal2 .modal-footer {
     border-color: #000000;
-    height: 22%;
+    height: 30%;
 }
 .modal {
     display: none;
@@ -74,7 +74,6 @@ html, body {
     height: 80%;
 }
 
-/* Responsive adjustments */
 @media screen and (max-width: 768px) {
     .modal-content {
         width: 80%;
@@ -415,4 +414,8 @@ textarea {
 
 .message-box.show {
     display: block;
+}
+
+.highlight {
+    background-color: yellow;
 }

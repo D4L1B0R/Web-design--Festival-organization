@@ -1,16 +1,19 @@
-const firebasedatabase = "https://evento-13796-default-rtdb.europe-west1.firebasedatabase.app";
-document.getElementById("sub").addEventListener("click", function(event) {
-    event.preventDefault();
-    handleFormSubmission();
-});
+const firebaseDatabase = "https://evento-13796-default-rtdb.europe-west1.firebasedatabase.app/";
+const festivaliEndpoint = firebaseDatabase + "festivali/";
+const korisniciEndpoint = firebaseDatabase + "organizatoriFestivala/";
 
-function validatePhone(phone) {
-    return /^(\d{3})\/(\d{3,4}-\d{3,4})$/.test(phone);
-}
+document.getElementById("festForm").addEventListener("submit", function(event) {
+    const formInputs = Array.from(this.elements).filter(input => input.tagName === "INPUT");
+    const allInputsFilled = formInputs.every(input => input.value !== "");
 
-function validateEmail(email) {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-}
+    if (!allInputsFilled) {
+        event.preventDefault();
+        console.log("Popunite sva obavezna polja.");
+    } else {
+        event.preventDefault();
+        handleFormSubmission(); 
+    }
+});                  
 
 function handleFormSubmission() {
     let formData = {
@@ -19,22 +22,31 @@ function handleFormSubmission() {
         prevoz: document.getElementById("prevoz").value,
         cena: document.getElementById("cena").value,
         maxOsoba: document.getElementById("maxOsoba").value,
-        opis: document.getElementById("opis").value
+        opis: document.getElementById("opis").value,
+        slike: document.getElementById("logo").value,
     };
-    let firebasedatabase_obj = JSON.parse(localStorage.getItem("firebasedatabase"));
-    let organizatorExists = false;
-    const organizator = document.getElementById("org").value;
-    for (let org in firebasedatabase_obj["organizatoriFestivala"]) {
-        if (firebasedatabase_obj["organizatoriFestivala"][org]["naziv"] == organizator) {
-            organizatorExists = true;
-            updateDataInFirebase(formData, firebasedatabase_obj["organizatoriFestivala"][org]["festivali"]);
-        }
-    }
-    if (!organizatorExists) {
-        document.getElementById("organizatorError").innerText = "Uneseni organizator ne postoji.";
-    }
-};    
-function updateDataInFirebase(formData, org) {
+    const orgInput = document.getElementById("org").value;
+    fetch(korisniciEndpoint + ".json")
+        .then(response => response.json())
+        .then(data => {
+            let organizatorExists = false;
+            for (const key in data) {
+                if (data.hasOwnProperty(key) && data[key].naziv === orgInput) {
+                    organizatorExists = true;
+                    updateDataInFirebase(formData, data[key].festivali);
+                    break;
+                }
+            }
+            if (!organizatorExists) {
+                document.getElementById("organizatorError").innerText = "Uneseni organizator ne postoji.";
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+}
+
+function updateDataInFirebase(formData, orgFestivali) {
     const xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4) {
@@ -45,6 +57,7 @@ function updateDataInFirebase(formData, org) {
                 console.log("Cena: " + formData.cena);
                 console.log("Max osoba: " + formData.maxOsoba);
                 console.log("Opis: " + formData.opis);
+                console.log("Slike: " + formData.slike);
                 window.location.href = '/html/Organizatori.html';
             } else {
                 console.error("Error:", this.status);
@@ -52,6 +65,6 @@ function updateDataInFirebase(formData, org) {
             }
         }
     };
-    xhttp.open("POST", firebasedatabase + `/festivali/`  + org + `.json`);
+    xhttp.open("POST", festivaliEndpoint + orgFestivali + ".json");
     xhttp.send(JSON.stringify(formData));
 }

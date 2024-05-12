@@ -5,6 +5,3 @@ function openModal() {
 function closeModal() {
     document.getElementById('videoModal').style.display = 'none';
 }
-document.getElementById("submitButton").addEventListener("click", function(event) {
-    event.preventDefault();
-});

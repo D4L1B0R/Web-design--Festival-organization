@@ -111,7 +111,13 @@ function createCard(organizator, obj) {
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4) {
                 if (this.status == 200) {
-                    console.log("Uspešno izmenjeni podaci!");
+                    console.log("Naziv: " + data.naziv);
+                    console.log("Adresa: " + data.adresa);
+                    console.log("Godina osnivanja: " + data.godinaOsnivanja);
+                    console.log("Kontakt telefon: " + data.kontaktTelefon);
+                    console.log("Email: " + data.email);
+                    console.log("Logo: " + data.logo);
+                    console.log("Festivali: " + data.festivali);
                     let messageBox = document.getElementById("message-box");
                         messageBox.textContent = "Organizator je uspešno izmenjen!";
                         messageBox.classList.add("show");
