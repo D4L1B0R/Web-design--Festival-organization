@@ -3,17 +3,10 @@ const festivaliEndpoint = firebaseDatabase + "festivali/";
 const korisniciEndpoint = firebaseDatabase + "organizatoriFestivala/";
 
 document.getElementById("festForm").addEventListener("submit", function(event) {
-    const formInputs = Array.from(this.elements).filter(input => input.tagName === "INPUT");
-    const allInputsFilled = formInputs.every(input => input.value !== "");
-
-    if (!allInputsFilled) {
-        event.preventDefault();
-        console.log("Popunite sva obavezna polja.");
-    } else {
-        event.preventDefault();
-        handleFormSubmission(); 
-    }
-});                  
+    event.preventDefault();
+    handleFormSubmission();
+});
+             
 
 function handleFormSubmission() {
     let formData = {
@@ -23,6 +16,7 @@ function handleFormSubmission() {
         cena: document.getElementById("cena").value,
         maxOsoba: document.getElementById("maxOsoba").value,
         opis: document.getElementById("opis").value,
+        slike: document.getElementById("slike").value.split(","),
     };
     const orgInput = document.getElementById("org").value;
     fetch(korisniciEndpoint + ".json")

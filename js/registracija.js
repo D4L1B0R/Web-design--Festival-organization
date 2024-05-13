@@ -1,4 +1,4 @@
-const firebasedatabase1 = "https://evento-13796-default-rtdb.europe-west1.firebasedatabase.app";
+const firebasedatabase4 = "https://evento-13796-default-rtdb.europe-west1.firebasedatabase.app";
 document.getElementById("regForms").addEventListener("submit", function(event) {
     const formInputs = Array.from(this.elements).filter(input => input.tagName === "INPUT");
     const allInputsFilled = formInputs.every(input => input.value !== "");
@@ -22,15 +22,15 @@ function validateEmail(email) {
 
 function handleFormSubmission() {
     let formData = {
-        korisnickoIme: document.getElementById("korisnickoIme").value,
-        ime: document.getElementById("ime").value,
-        prezime: document.getElementById("prezime").value,
-        email: document.getElementById("email-reg").value,
-        datumRodjenja: document.getElementById("datumRodjenja").value,
-        adresa: document.getElementById("adresa").value,
-        telefon: document.getElementById("telefon").value,
-        zanimanje: document.getElementById("zanimanje").value,
-        lozinka: document.getElementById("lozinka").value,
+        korisnickoIme: document.getElementById("reg-korisnickoIme").value,
+        ime: document.getElementById("reg-ime").value,
+        prezime: document.getElementById("reg-prezime").value,
+        email: document.getElementById("reg-email").value,
+        datumRodjenja: document.getElementById("reg-datumRodjenja").value,
+        adresa: document.getElementById("reg-adresa").value,
+        telefon: document.getElementById("reg-telefon").value,
+        zanimanje: document.getElementById("reg-zanimanje").value,
+        lozinka: document.getElementById("reg-lozinka").value,
     };
 
     if (!validatePhone(formData.telefon)) {
@@ -68,6 +68,6 @@ function updateDataInFirebase(formData) {
             }
         }
     };
-    xhttp.open("POST", firebasedatabase1 + "/korisnici.json");
+    xhttp.open("POST", firebasedatabase4 + "/korisnici.json");
     xhttp.send(JSON.stringify(formData));
 }

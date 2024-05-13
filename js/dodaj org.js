@@ -1,20 +1,8 @@
 const firebasedatabase = "https://evento-13796-default-rtdb.europe-west1.firebasedatabase.app";
-document.getElementById("submit-btn").addEventListener("click", function(event) {
-    const formInputs = this.querySelectorAll('input');
-    let allInputsFilled = true;
-    
-    formInputs.forEach(input => {
-        if (!input.value) {
-            allInputsFilled = false;
-        }
-    });
 
-    if (!allInputsFilled) {
-        event.preventDefault();
-    } else {
-        event.preventDefault();
-        handleFormSubmission(); 
-    }
+document.getElementById("submit-btn").addEventListener("submit", function(event) {
+    event.preventDefault();
+    handleFormSubmission();
 });
 
 function validatePhone(phone) {
@@ -32,9 +20,9 @@ function validateEmail(email) {
 function handleFormSubmission() {
     let formData = {
         naziv: document.getElementById("naziv").value,
-        adresa: document.getElementById("adresa2").value,
+        adresa: document.getElementById("adresa").value,
         godinaRodjenja: document.getElementById("godinaRodjenja").value,
-        telefon: document.getElementById("telefon2").value,
+        telefon: document.getElementById("telefon").value,
         email: document.getElementById("em").value,
         logo: document.getElementById("logo").value,
     };
@@ -56,7 +44,7 @@ function handleFormSubmission() {
         document.getElementById("addressError").innerText = "Molimo unesite validnu adresu formata (ulica i broj, mesto/grad, poštanski broj).";
         return;
     } else {
-        document.getElementById("adddressError").innerText = "";
+        document.getElementById("addressError").innerText = "";
     }
 
     updateDataInFirebase(formData);

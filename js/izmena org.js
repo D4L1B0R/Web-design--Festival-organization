@@ -35,19 +35,19 @@ function createCard(organizator, obj) {
 <h2 class="my-4">Izmena podataka</h2>
 <form id="userForm">
     <div class="mb-3">
-        <label for="name" class="form-label">Naziv:</label>
+        <label for="naziv" class="form-label">Naziv:</label>
         <input type="text" class="form-control" id="naziv" name="naziv" placeholder="${organizator["naziv"]}">
     </div>
     <div class="mb-3">
-        <label for="surname" class="form-label">Adresa:</label>
+        <label for="adresa" class="form-label">Adresa:</label>
         <input type="text" class="form-control" id="adresa" name="adresa" placeholder="${organizator["adresa"]}">
     </div>
     <div class="mb-3">
-        <label for="address" class="form-label">Godina osnivanja:</label>
+        <label for="godinaOsnivanja" class="form-label">Godina osnivanja:</label>
         <input type="text" class="form-control" id="godinaOsnivanja" name="godinaOsnivanja" placeholder="${organizator["godinaOsnivanja"]}">
     </div>
     <div class="mb-3">
-        <label for="phone" class="form-label">Kontakt telefon:</label>
+        <label for="kontaktTelefon" class="form-label">Kontakt telefon:</label>
         <input type="tel" class="form-control" id="kontaktTelefon" name="kontaktTelefon" placeholder="${organizator["kontaktTelefon"]}">
         <div id="phoneError" class="error-message"></div>
     </div>
