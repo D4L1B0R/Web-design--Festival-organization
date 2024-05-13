@@ -23,7 +23,6 @@ function handleFormSubmission() {
         cena: document.getElementById("cena").value,
         maxOsoba: document.getElementById("maxOsoba").value,
         opis: document.getElementById("opis").value,
-        slike: document.getElementById("logo").value,
     };
     const orgInput = document.getElementById("org").value;
     fetch(korisniciEndpoint + ".json")

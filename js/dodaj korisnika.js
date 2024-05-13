@@ -1,4 +1,4 @@
-const firebasedatabase1 = "https://evento-13796-default-rtdb.europe-west1.firebasedatabase.app";
+const firebasedatabase12 = "https://evento-13796-default-rtdb.europe-west1.firebasedatabase.app";
 document.getElementById("userForms").addEventListener("submit", function(event) {
     const formInputs = Array.from(this.querySelectorAll("input"));
     const allInputsFilled = formInputs.every(input => input.value !== "");
@@ -22,14 +22,14 @@ function validateEmail(email) {
 
 function handleFormSubmission() {
     let formData = {
-        korisnickoIme: document.getElementById("korisnickoIme").value,
-          ime: document.getElementById("ime").value,
-          prezime: document.getElementById("prezime").value,
+        korisnickoIme: document.getElementById("korisnickoIme4").value,
+          ime: document.getElementById("ime4").value,
+          prezime: document.getElementById("prezime4").value,
           email: document.getElementById("email4").value,
-          datumRodjenja: document.getElementById("datumRodjenja").value,
-          adresa: document.getElementById("adresa").value,
-          telefon: document.getElementById("telefon").value,
-          zanimanje: document.getElementById("zanimanje").value,
+          datumRodjenja: document.getElementById("datumRodjenja4").value,
+          adresa: document.getElementById("adresa4").value,
+          telefon: document.getElementById("telefon4").value,
+          zanimanje: document.getElementById("zanimanje4").value,
     };
     if (!validatePhone(formData.telefon)) {
         document.getElementById("phoneError").innerText = "Molimo unesite validan broj telefona.";
@@ -66,6 +66,6 @@ function updateDataInFirebase(formData) {
             }
         }
     };
-    xhttp.open("POST", firebasedatabase1 + `/korisnici/.json`);
+    xhttp.open("POST", firebasedatabase12 + `/korisnici/.json`);
     xhttp.send(JSON.stringify(formData));
 }

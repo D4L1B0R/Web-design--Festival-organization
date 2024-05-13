@@ -66,7 +66,7 @@ function create(korisnik, obj_kor) {
           <label for="occupation" class="form-label">Zanimanje:</label>
           <input type="text" class="form-control" id="zanimanje" name="zanimanje" placeholder="${korisnik["zanimanje"]}">
       </div>
-      <button type="button" class="btn" id="new-btn" style="display: inline-block" onclick="geek()">Sačuvaj izmene</button>
+      <button type="button" class="btn" id="new-btn" style="display: inline-block">Sačuvaj izmene</button>
       <a type="button" class="btn" href="/html/Korisnici.html">Vrati se nazad</a>
   </form>
   `;

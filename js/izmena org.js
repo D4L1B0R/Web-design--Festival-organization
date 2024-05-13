@@ -56,7 +56,7 @@ function createCard(organizator, obj) {
         <input type="email" class="form-control" id="em" name="email" placeholder="${organizator["email"]}">
         <div id="emailError" class="error-message"></div>
     </div>
-    <button type="button" class="btn" id="new-btn" style="display: inline-block" onclick="geek()">Sačuvaj izmene</button>
+    <button type="button" class="btn" id="new-btn" style="display: inline-block">Sačuvaj izmene</button>
     <a type="button" class="btn" href="/html/Organizatori.html">Vrati se nazad</a>
 </form>
 `;

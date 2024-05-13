@@ -21,6 +21,10 @@ function validatePhone(phone) {
     return /^(\d{3})\/(\d{3,4}-\d{3,4})$/.test(phone);
 }
 
+function validateAddress(address) {
+    return /^[A-Za-z0-9\s.,\-/]+,\s*[A-Za-z\s]+,\s*\d{5}$/.test(address);
+}
+
 function validateEmail(email) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
@@ -28,9 +32,9 @@ function validateEmail(email) {
 function handleFormSubmission() {
     let formData = {
         naziv: document.getElementById("naziv").value,
-        adresa: document.getElementById("adresa").value,
+        adresa: document.getElementById("adresa2").value,
         godinaRodjenja: document.getElementById("godinaRodjenja").value,
-        telefon: document.getElementById("telefon").value,
+        telefon: document.getElementById("telefon2").value,
         email: document.getElementById("em").value,
         logo: document.getElementById("logo").value,
     };
@@ -46,6 +50,13 @@ function handleFormSubmission() {
         return;
     } else {
         document.getElementById("emailError").innerText = "";
+    }
+
+    if (!validateAddress(formData.adresa)) {
+        document.getElementById("addressError").innerText = "Molimo unesite validnu adresu formata (ulica i broj, mesto/grad, poštanski broj).";
+        return;
+    } else {
+        document.getElementById("adddressError").innerText = "";
     }
 
     updateDataInFirebase(formData);

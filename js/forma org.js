@@ -163,7 +163,7 @@ function createFest(festivals, org_fest) {
           <p class="card-text">Max osoba: ${value["maxOsoba"]}</p>
           <p class="card-text">Tip: ${value["tip"]}</p>
           <a class="btn" id="izmena-kor" href="./Festivali/IzmenaFestivala.html?organizator=${org_fest}&festival=${fest}">Izmeni</a>
-          <button id="del-btns-${numberOfFestivals}" class="btn btn-danger" style="display: inline-block" onclick="geek1()">Obriši</button>
+          <button id="del-btns-${numberOfFestivals}" class="btn btn-danger" style="display: inline-block">Obriši</button>
         </div>
       </div>
     </div>

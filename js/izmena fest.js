@@ -67,6 +67,10 @@ function create(festival) {
             <div id="numberError" class="error-message"></div>
         </div>
         <div class="mb-3">
+            <label for="slike" class="form-label">Unesite slike (svaki link je razmaknut sa zarezom):</label>
+            <textarea class="form-control" id="slike" name="slike" placeholder="${festival["slike"]}"></textarea>
+        </div>
+        <div class="mb-3">
             <label for="opis" class="form-label">Opišite događaj:</label>
             <textarea class="form-control" id="opis" name="opis" placeholder="${festival["opis"]}"></textarea>
         </div>
@@ -95,7 +99,7 @@ function handleFormSubmission() {
         cena: document.getElementById("cena").value,
         maxOsoba: document.getElementById("maxOsoba").value,
         opis: document.getElementById("opis").value,
-        slike: festival["slike"]
+        slike: document.getElementById("slike").value.split(","),
     };
     if (!isNumeric(formData.cena)) {
       document.getElementById("priceError").innerText = "Cena mora biti numerička vrednost.";
@@ -128,6 +132,7 @@ function updateDataInFirebase(data) {
                 console.log("cena:", data.cena);
                 console.log("maxOsoba:", data.maxOsoba);
                 console.log("opis:", data.opis);
+                console.log("slike:", data.slike);
                 
                 let messageBox = document.getElementById("message-box");
                 messageBox.textContent = "Festival je uspešno izmenjen!";

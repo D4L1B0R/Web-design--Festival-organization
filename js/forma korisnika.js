@@ -52,7 +52,7 @@ function create(korisnik) {
         <a class="btn" href="./Korisnici/forma korisnika.html?korisnik=${obj}" style="margin-bottom: 10px;">Izmeni</a>
       </td>
       <td style="text-align: center;">
-        <button class="btn btn-danger" id="del-btn-${brojKorisnika}" style="display: inline-block" onclick="geek()">Obriši</button>
+        <button class="btn btn-danger" id="del-btn-${brojKorisnika}" style="display: inline-block">Obriši</button>
       </td>
     </tr>
     `;
