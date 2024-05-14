@@ -1,12 +1,5 @@
-//pokretanje funkcije za učitavanje video snimka
-function openModal() {
-    document.getElementById('videoModal').style.display = 'block';
-}
-function closeModal() {
-    document.getElementById('videoModal').style.display = 'none';
-}
-
 const firebasedatabase3 = "https://evento-13796-default-rtdb.europe-west1.firebasedatabase.app";
+const xhttplogins = new XMLHttpRequest();
 
 document.getElementById("form-container").addEventListener("submit", function(event) {
     event.preventDefault();
@@ -25,13 +18,13 @@ function handleFormLoginSubmission() {
 }
 
 function updateDataInFirebaseLogin(formData) {
-    const xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function () {
+    xhttplogins.onreadystatechange = function () {
         if (this.readyState == 4) {
             if (this.status == 200) { 
-                formData = JSON.parse(this.responseText);
-                for (let user in formData) {
-                    if (formData.korisnickoIme === user.korisnickoIme && formData.lozinka === user.lozinka) {
+                data = JSON.parse(this.responseText);
+                for (let user in data) {
+                    let user_obj = data[user];
+                    if (formData.korisnickoIme === user_obj.korisnickoIme && formData.lozinka === user_obj.lozinka) {
                         console.log("Prijava uspešna!");
                         let messageBox = document.getElementById("message-box");
                         messageBox.textContent = "Uspešno ste se prijavili " + formData.korisnickoIme + "!";
@@ -49,6 +42,6 @@ function updateDataInFirebaseLogin(formData) {
             }
         }
     };
-    xhttp.open("GET", firebasedatabase3 + "/korisnici.json");
-    xhttp.send(JSON.stringify(formData));
+    xhttplogins.open("GET", firebasedatabase3 + "/korisnici.json");
+    xhttplogins.send();
 }

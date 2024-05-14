@@ -55,7 +55,7 @@
                                 <div class="mb-3">
                                     <label for="reg-korisnickoIme" class="form-label">Korisničko ime:</label>
                                     <input type="text" class="form-control" id="reg-korisnickoIme" name="korisnickoIme" required>
-                                    <div id="usernameError" class="message-box"></div>
+                                    <div id="usernameErrorReg" class="error-message"></div>
                                 </div>
                                 <div class="mb-3">
                                     <label for="reg-ime" class="form-label">Ime:</label>
@@ -72,7 +72,7 @@
                                 <div class="mb-3">
                                     <label for="reg-email" class="form-label">Email:</label>
                                     <input type="email" class="form-control" id="reg-email" name="email" required>
-                                    <div id="emailError" class="message-box"></div>
+                                    <div id="emailErrorReg" class="error-message"></div>
                                 </div>
                                 <div class="mb-3">
                                     <label for="reg-datumRodjenja" class="form-label">Datum Rođenja:</label>
@@ -81,12 +81,12 @@
                                 <div class="mb-3">
                                     <label for="reg-adresa" class="form-label">Adresa:</label>
                                     <input type="text" class="form-control" id="reg-adresa" name="adresa" required>
-                                    <div id="addressError" class="message-box"></div>
+                                    <div id="addressErrorReg" class="error-message"></div>
                                 </div>
                                 <div class="mb-3">
                                     <label for="reg-telefon" class="form-label">Telefon:</label>
                                     <input type="tel" class="form-control" id="reg-telefon" name="telefon" required>
-                                    <div id="phoneError" class="message-box"></div>
+                                    <div id="phoneErrorReg" class="error-message"></div>
                                 </div>
                                 <div class="mb-3">
                                     <label for="reg-zanimanje" class="form-label">Zanimanje:</label>
@@ -100,6 +100,7 @@
                     </div>
                 </div>
             </div>
+            <div class="message-box" id="message-box"></div>
             <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -119,10 +120,10 @@
                                     <label for="password">Lozinka:</label>
                                     <input type="password" class="form-control" id="password" name="password" required>
                                 </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Prijavi se</button>
+                                </div>
                             </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Prijavi se</button>
                         </div>
                     </div>
                 </div>

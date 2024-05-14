@@ -1,10 +1,23 @@
 const firebasedatabase4 = "https://evento-13796-default-rtdb.europe-west1.firebasedatabase.app";
 
+const xhttpreg = new XMLHttpRequest();
 document.getElementById("form-container").addEventListener("submit", function(event) {
     event.preventDefault();
     const submittedForm = event.target.closest('form');
     if (submittedForm.id === "regForms") {
-        handleFormRegistrationSubmission(submittedForm);
+        xhttpreg.onreadystatechange = function () {
+            if (this.readyState == 4) {
+                if (this.status == 200) { 
+                    let data = JSON.parse(firebasedatabase4.responseText);
+                    handleFormRegistrationSubmission(data);
+                } else {
+                    console.error("Error:", this.status);
+                    window.location.href = '/html/Greška.html';
+                }
+            }
+            xhttpreg.open("GET", firebasedatabase4 + "/korisnici.json");
+            xhttpreg.send();
+        }
     }
 });
 
@@ -20,7 +33,7 @@ function validateAddress(address) {
     return /^[A-Za-z0-9\s.,\-/]+,\s*[A-Za-z\s]+,\s*\d{5}$/.test(address);
 }
 
-function handleFormRegistrationSubmission() {
+function handleFormRegistrationSubmission(firebasedatabaseUsers_obj) {
     let formData = {
         korisnickoIme: document.getElementById("reg-korisnickoIme").value,
         ime: document.getElementById("reg-ime").value,
@@ -36,9 +49,9 @@ function handleFormRegistrationSubmission() {
     const currentYear = new Date().getFullYear();
         const yearRegex = /\b\d{4}\b/;
 
-        let firebasedatabaseUsers_obj = JSON.parse(firebasedatabaseUsers);
         for (let user in firebasedatabaseUsers_obj) {
-            if (formData.korisnickoIme === user.korisnickoIme) {
+            let user_obj = firebasedatabaseUsers_obj[user];
+            if (formData.korisnickoIme === user_obj.korisnickoIme) {
                 console.log("Korisničko ime već postoji.");
                 document.getElementById("usernameError").innerText = "Korisničko ime već postoji.";
                 return;
@@ -46,29 +59,30 @@ function handleFormRegistrationSubmission() {
         }
         if (yearRegex.test(formData.datumRodjenja) && parseInt(formData.datumRodjenja) <= currentYear) {
             console.log("Valid year");
-            document.getElementById("yearError").innerText = "";
+            document.getElementById("yearErrorReg").innerText = "";
         } else {
             console.log("Invalid year");
-            document.getElementById("yearError").innerText = "Molimo unesite validnu godinu.";
+            document.getElementById("yearErrorReg").innerText = "Molimo unesite validnu godinu.";
+            return;
         }
         if (!validatePhone(formData.telefon)) {
-            document.getElementById("phoneError").innerText = "Molimo unesite validan broj telefona.";
+            document.getElementById("phoneErrorReg").innerText = "Molimo unesite validan broj telefona.";
             return;
         } else {
-            document.getElementById("phoneError").innerText = "";
+            document.getElementById("phoneErrorReg").innerText = "";
         }
         if (!validateEmail(formData.email)) {
-            document.getElementById("emailError").innerText = "Molimo unesite validnu email adresu.";
+            document.getElementById("emailErrorReg").innerText = "Molimo unesite validnu email adresu.";
             return;
         } else {
-            document.getElementById("emailError").innerText = "";
+            document.getElementById("emailErrorReg").innerText = "";
         }
         if (!validateAddress(formData.adresa)) {
         console.log("Invalid address");
-        document.getElementById("addressError").innerText = "Molimo unesite validnu adresu formata (ulica i broj, mesto/grad, poštanski broj).";
+        document.getElementById("addressErrorReg").innerText = "Molimo unesite validnu adresu formata (ulica i broj, mesto/grad, poštanski broj).";
         return;
         } else {
-            document.getElementById("addressError").innerText = "";
+            document.getElementById("addressErrorReg").innerText = "";
         }
 
     updateDataInFirebaseReg(formData);

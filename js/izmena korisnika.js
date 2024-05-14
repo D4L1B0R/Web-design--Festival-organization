@@ -16,7 +16,7 @@ xhttp.onreadystatechange = function () {
       for (let obj in data) {
         if (obj == korisnik) {
             let kor_obj = data[obj];
-            create(kor_obj, obj);
+            create(kor_obj, obj, data);
         }
       }
     } else {
@@ -28,7 +28,7 @@ xhttp.onreadystatechange = function () {
 xhttp.open("GET", firebasedatabase + "/korisnici.json");
 xhttp.send();
 
-function create(korisnik, obj_kor) {
+function create(korisnik, obj_kor, korisnici) {
   let innerHTML = `
   <h2 class="my-4">Izmena podataka</h2>
   <form id="userChangeForm" method="post" action="submit.php">
@@ -53,7 +53,7 @@ function create(korisnik, obj_kor) {
       <div class="mb-3">
           <label for="datumRodjenja" class="form-label">Datum Rođenja:</label>
           <input type="date" class="form-control" id="datumRodjenja" name="datumRodjenja" placeholder="${korisnik["datumRodjenja"]}">
-          <div id="yearError" class="error-message"></div>
+          <div id="yearError" class="error-message"</div>
       </div>
       <div class="mb-3">
           <label for="adresa" class="form-label">Adresa:</label>
@@ -77,7 +77,7 @@ function create(korisnik, obj_kor) {
   parent.innerHTML = innerHTML;
     document.getElementById("new-btn").addEventListener("click", function (event) {
         event.preventDefault();
-        handleFormSubmission(obj_kor);
+        handleFormSubmission(korisnik);
     });
 
     function validatePhone(phone) {
@@ -111,20 +111,20 @@ function create(korisnik, obj_kor) {
         const currentYear = new Date().getFullYear();
         const yearRegex = /\b\d{4}\b/;
 
-        let firebasedatabaseUsers_obj = JSON.parse(firebasedatabaseUsers);
-        for (let user in firebasedatabaseUsers_obj) {
-            if (formData.korisnickoIme === user.korisnickoIme) {
+        for (let user in korisnici) {
+            let user_obj = korisnici[user];
+            if (formData.korisnickoIme == user_obj.korisnickoIme && formData.korisnickoIme !== korisnik.korisnickoIme) {
                 console.log("Korisničko ime već postoji.");
                 document.getElementById("usernameError").innerText = "Korisničko ime već postoji.";
                 return;
             }
         }
         if (yearRegex.test(formData.datumRodjenja) && parseInt(formData.datumRodjenja) <= currentYear) {
-            console.log("Valid year");
             document.getElementById("yearError").innerText = "";
         } else {
             console.log("Invalid year");
             document.getElementById("yearError").innerText = "Molimo unesite validnu godinu.";
+            return;
         }
         if (!validatePhone(formData.telefon)) {
             document.getElementById("phoneError").innerText = "Molimo unesite validan broj telefona.";
@@ -139,9 +139,9 @@ function create(korisnik, obj_kor) {
             document.getElementById("emailError").innerText = "";
         }
         if (!validateAddress(formData.adresa)) {
-        console.log("Invalid address");
-        document.getElementById("addressError").innerText = "Molimo unesite validnu adresu formata (ulica i broj, mesto/grad, poštanski broj).";
-        return;
+            console.log("Invalid address");
+            document.getElementById("addressError").innerText = "Molimo unesite validnu adresu formata (ulica i broj, mesto/grad, poštanski broj).";
+            return;
         } else {
             document.getElementById("addressError").innerText = "";
         }

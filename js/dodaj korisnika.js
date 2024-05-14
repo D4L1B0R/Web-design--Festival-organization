@@ -1,18 +1,29 @@
 const firebasedatabase12 = "https://evento-13796-default-rtdb.europe-west1.firebasedatabase.app";
-const firebasedatabaseUsers = "https://evento-13796-default-rtdb.europe-west1.firebasedatabase.app/korisnici.json";
 
-document.getElementById("userForms").addEventListener("submit", function(event) {
-    const formInputs = Array.from(this.querySelectorAll("input"));
-    const allInputsFilled = formInputs.every(input => input.value !== "");
-
-    if (!allInputsFilled) {
-        event.preventDefault();
-        console.log("Popunite sva obavezna polja.");
-    } else {
-        event.preventDefault();
-        handleFormSubmission(); 
+const xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function () {
+    if (this.readyState == 4) {
+        if (this.status == 200) { 
+            let data = JSON.parse(this.responseText);
+            document.getElementById("userForms").addEventListener("submit", function(event) {
+                const formInputs = Array.from(this.querySelectorAll("input"));
+                const allInputsFilled = formInputs.every(input => input.value !== "");
+                if (!allInputsFilled) {
+                    event.preventDefault();
+                    console.log("Popunite sva obavezna polja.");
+                } else {
+                    event.preventDefault();
+                    handleFormSubmission(data); 
+                }
+            }); 
+        } else {
+            console.error("Error:", this.status);
+            window.location.href = '/html/Greška.html';
+        }
     }
-}); 
+    xhttp.open("GET", firebasedatabase4 + "/korisnici.json");
+    xhttp.send();
+}
 
 function validatePhone(phone) {
     return /^-?\d{1,10}$/.test(phone);
@@ -25,7 +36,7 @@ function validateAddress(address) {
     return /^[A-Za-z0-9\s.,\-/]+,\s*[A-Za-z\s]+,\s*\d{5}$/.test(address);
 }
 
-function handleFormSubmission() {
+function handleFormSubmission(firebasedatabaseUsers_obj) {
     let formData = {
         korisnickoIme: document.getElementById("korisnickoIme4").value,
         ime: document.getElementById("ime4").value,
@@ -39,9 +50,9 @@ function handleFormSubmission() {
     const currentYear = new Date().getFullYear();
     const yearRegex = /\b\d{4}\b/;
 
-    let firebasedatabaseUsers_obj = JSON.parse(firebasedatabaseUsers);
     for (let user in firebasedatabaseUsers_obj) {
-        if (formData.korisnickoIme === user.korisnickoIme) {
+        let user_obj = firebasedatabaseUsers_obj[user];
+        if (formData.korisnickoIme === user_obj.korisnickoIme) {
             console.log("Korisničko ime već postoji.");
             document.getElementById("usernameError").innerText = "Korisničko ime već postoji.";
             return;
@@ -53,6 +64,7 @@ function handleFormSubmission() {
     } else {
         console.log("Invalid year");
         document.getElementById("yearError").innerText = "Molimo unesite validnu godinu.";
+        return;
     }
     if (!validatePhone(formData.telefon)) {
         document.getElementById("phoneError").innerText = "Molimo unesite validan broj telefona.";

@@ -109,7 +109,7 @@
             <h1 class="text-center" style="margin-bottom: 100px;">Organizatori festivala</h1>
             <div class="row" id="organizatori"></div>
         </div>
-        <div id="form-container"></div>
+        <div class="form-container"></div>
             <div id="Prijava"></div>
             <div class="container">
                 <div class="row" style="margin-top: 100px; margin-bottom: 100px;">
@@ -117,7 +117,7 @@
                         <div class="prijava">
                             <div class="prijava-container">
                                 <h1 class="mb-4">Prijavite se:</h1>
-                                <form id="loginForm" method="post">
+                                <form id="loginForm">
                                     <div class="form-group mb-3">
                                         <label for="username">Korisničko ime:</label>
                                         <input type="text" class="form-control" id="username" name="username" required>
@@ -126,7 +126,9 @@
                                         <label for="password">Lozinka:</label>
                                         <input type="password" class="form-control" id="password" name="password" required>
                                     </div>
-                                    <button class="btn btn-primary" id="btn-login" type="submit">Prijavite se</button>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-secondary" id="login-btn">Prijavi se</button>
+                                    </div>
                                 </form>
                             </div>
                         </div>
@@ -150,7 +152,7 @@
                                 <div class="mb-3">
                                     <label for="reg-korisnickoIme" class="form-label">Korisničko ime:</label>
                                     <input type="text" class="form-control" id="reg-korisnickoIme" name="korisnickoIme" required>
-                                    <div id="usernameError" class="message-box"></div>
+                                    <div id="usernameErrorReg" class="error-message"></div>
                                 </div>
                                 <div class="mb-3">
                                     <label for="reg-ime" class="form-label">Ime:</label>
@@ -167,7 +169,7 @@
                                 <div class="mb-3">
                                     <label for="reg-email" class="form-label">Email:</label>
                                     <input type="email" class="form-control" id="reg-email" name="email" required>
-                                    <div id="emailError" class="message-box"></div>
+                                    <div id="emailErrorReg" class="error-message"></div>
                                 </div>
                                 <div class="mb-3">
                                     <label for="reg-datumRodjenja" class="form-label">Datum Rođenja:</label>
@@ -176,12 +178,12 @@
                                 <div class="mb-3">
                                     <label for="reg-adresa" class="form-label">Adresa:</label>
                                     <input type="text" class="form-control" id="reg-adresa" name="adresa" required>
-                                    <div id="addressError" class="message-box"></div>
+                                    <div id="addressErrorReg" class="error-message"></div>
                                 </div>
                                 <div class="mb-3">
                                     <label for="reg-telefon" class="form-label">Telefon:</label>
                                     <input type="tel" class="form-control" id="reg-telefon" name="telefon" required>
-                                    <div id="phoneError" class="message-box"></div>
+                                    <div id="phoneErrorReg" class="error-message"></div>
                                 </div>
                                 <div class="mb-3">
                                     <label for="reg-zanimanje" class="form-label">Zanimanje:</label>
@@ -240,13 +242,21 @@
                 contentElements.forEach(function(element, index) {
                     element.classList.remove('highlight');
                 });
+
+            function openModal() {
+                document.getElementById('videoModal').style.display = 'block';
+            }
+            function closeModal() {
+                document.getElementById('videoModal').style.display = 'none';
+            }
+
             }
         </script>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-        <script src="/js/glavniJS.js"></script>
         <script src="/js/glavnaStr.js"></script>
         <script src="/js/registracija.js"></script>
+        <script src="/js/glavniJS.js"></script>
     </body>
 </html>
