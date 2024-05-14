@@ -1,26 +1,15 @@
-const firebasedatabase4 = "https://evento-13796-default-rtdb.europe-west1.firebasedatabase.app";
+document.addEventListener("DOMContentLoaded", function() {
+    const firebasedatabase4 = "https://evento-13796-default-rtdb.europe-west1.firebasedatabase.app";
+    const xhttpreg = new XMLHttpRequest();
 
-const xhttpreg = new XMLHttpRequest();
-document.getElementById("form-container").addEventListener("submit", function(event) {
-    event.preventDefault();
-    const submittedForm = event.target.closest('form');
-    if (submittedForm.id === "regForms") {
-        xhttpreg.onreadystatechange = function () {
-            if (this.readyState == 4) {
-                if (this.status == 200) { 
-                    let data = JSON.parse(firebasedatabase4.responseText);
-                    handleFormRegistrationSubmission(data);
-                } else {
-                    console.error("Error:", this.status);
-                    window.location.href = '/html/Greška.html';
-                }
-            }
-            xhttpreg.open("GET", firebasedatabase4 + "/korisnici.json");
-            xhttpreg.send();
+    document.addEventListener("submit", function(event) {
+        if (event.target && event.target.id === "regForms") {
+            event.preventDefault();
+            console.log("Handling registration form submission...");
+            handleFormRegistrationSubmission();
         }
-    }
-});
-
+    });
+    
 function validatePhoneReg(phone) {
     return /^\d{10}$/.test(phone);
 }
@@ -110,3 +99,4 @@ function updateDataInFirebaseReg(formData) {
     xhttp.open("POST", firebasedatabase4 + "/korisnici.json");
     xhttp.send(JSON.stringify(formData));
 }
+});

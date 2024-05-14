@@ -40,91 +40,89 @@
                 <button type="button" class="btn-reg" data-toggle="modal" data-target="#exampleModal">Registracija</button>
             </div>
         </nav>
-        <div id="form-container">
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Registracija</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <form id="regForms">
-                            <div class="modal-body" style="max-height: 400px; overflow-y: auto;">
-                                <div class="mb-3">
-                                    <label for="reg-korisnickoIme" class="form-label">Korisničko ime:</label>
-                                    <input type="text" class="form-control" id="reg-korisnickoIme" name="korisnickoIme" required>
-                                    <div id="usernameErrorReg" class="error-message"></div>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="reg-ime" class="form-label">Ime:</label>
-                                    <input type="text" class="form-control" id="reg-ime" name="ime" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="reg-prezime" class="form-label">Prezime:</label>
-                                    <input type="text" class="form-control" id="reg-prezime" name="prezime" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="reg-lozinka" class="form-label">Lozinka:</label>
-                                    <input type="password" class="form-control" id="reg-lozinka" name="lozinka" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="reg-email" class="form-label">Email:</label>
-                                    <input type="email" class="form-control" id="reg-email" name="email" required>
-                                    <div id="emailErrorReg" class="error-message"></div>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="reg-datumRodjenja" class="form-label">Datum Rođenja:</label>
-                                    <input type="date" class="form-control" id="reg-datumRodjenja" name="datumRodjenja" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="reg-adresa" class="form-label">Adresa:</label>
-                                    <input type="text" class="form-control" id="reg-adresa" name="adresa" required>
-                                    <div id="addressErrorReg" class="error-message"></div>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="reg-telefon" class="form-label">Telefon:</label>
-                                    <input type="tel" class="form-control" id="reg-telefon" name="telefon" required>
-                                    <div id="phoneErrorReg" class="error-message"></div>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="reg-zanimanje" class="form-label">Zanimanje:</label>
-                                    <input type="text" class="form-control" id="reg-zanimanje" name="zanimanje" required>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="submit" class="btn" id="reg-btn" style="display: inline-block">Registruj se</button>
-                            </div>
-                        </form>
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Registracija</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
+                    <form id="regForms">
+                        <div class="modal-body" style="max-height: 400px; overflow-y: auto;">
+                            <div class="mb-3">
+                                <label for="reg-korisnickoIme" class="form-label">Korisničko ime:</label>
+                                <input type="text" class="form-control" id="reg-korisnickoIme" name="korisnickoIme" required>
+                                <div id="usernameErrorReg" class="error-message"></div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="reg-ime" class="form-label">Ime:</label>
+                                <input type="text" class="form-control" id="reg-ime" name="ime" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="reg-prezime" class="form-label">Prezime:</label>
+                                <input type="text" class="form-control" id="reg-prezime" name="prezime" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="reg-lozinka" class="form-label">Lozinka:</label>
+                                <input type="password" class="form-control" id="reg-lozinka" name="lozinka" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="reg-email" class="form-label">Email:</label>
+                                <input type="email" class="form-control" id="reg-email" name="email" required>
+                                <div id="emailErrorReg" class="error-message"></div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="reg-datumRodjenja" class="form-label">Datum Rođenja:</label>
+                                <input type="date" class="form-control" id="reg-datumRodjenja" name="datumRodjenja" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="reg-adresa" class="form-label">Adresa:</label>
+                                <input type="text" class="form-control" id="reg-adresa" name="adresa" required>
+                                <div id="addressErrorReg" class="error-message"></div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="reg-telefon" class="form-label">Telefon:</label>
+                                <input type="tel" class="form-control" id="reg-telefon" name="telefon" required>
+                                <div id="phoneErrorReg" class="error-message"></div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="reg-zanimanje" class="form-label">Zanimanje:</label>
+                                <input type="text" class="form-control" id="reg-zanimanje" name="zanimanje" required>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn" id="reg-btn" style="display: inline-block">Registruj se</button>
+                        </div>
+                    </form>
                 </div>
             </div>
-            <div class="message-box" id="message-box"></div>
-            <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title2" id="exampleModalLabel">Prijava</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body" style="max-height: 400px; overflow-y: auto;">
-                            <form id="loginForm">
-                                <div class="mb-3">
-                                    <label for="username" class="form-label">Korisničko ime:</label>
-                                    <input type="text" class="form-control" id="username" name="username">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="password">Lozinka:</label>
-                                    <input type="password" class="form-control" id="password" name="password" required>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Prijavi se</button>
-                                </div>
-                            </form>
-                        </div>
+        </div>
+        <div class="message-box" id="message-box"></div>
+        <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title2" id="exampleModalLabel">Prijava</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" style="max-height: 400px; overflow-y: auto;">
+                        <form id="loginForm">
+                            <div class="mb-3">
+                                <label for="username" class="form-label">Korisničko ime:</label>
+                                <input type="text" class="form-control" id="username" name="username">
+                            </div>
+                            <div class="mb-3">
+                                <label for="password">Lozinka:</label>
+                                <input type="password" class="form-control" id="password" name="password" required>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-secondary">Prijavi se</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
