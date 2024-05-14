@@ -48,10 +48,11 @@ html, body {
     border-color: #000000;
 }
 
-#exampleModal2 .modal-footer {
-    border-color: #000000;
-    height: 30%;
+.modal-body {
+    overflow-y: auto;
+    position: relative;
 }
+
 .modal {
     display: none;
     position: fixed;
@@ -60,7 +61,6 @@ html, body {
     top: 0;
     width: 100%;
     height: 100%;
-    overflow: auto;
     background-color: rgba(0,0,0,0.8);
 }
 
@@ -68,34 +68,33 @@ html, body {
     position: fixed;
     top: 50%;
     left: 50%;
+    overflow: hidden;
+    overflow: auto;
     transform: translate(-50%, -50%);
     background-color: black;
     width: 40%;
-    height: 80%;
 }
 
-@media screen and (max-width: 768px) {
-    .modal-content {
-        width: 80%;
+@media screen and (max-height: 700px) {
+    #exampleModal .modal-content {
+        height: 80%;
     }
-}
 
-@media screen and (max-height: 600px) {
-    .modal-content {
-        height: 60%;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .modal-content {
-        width: 90%;
-    }
-}
-
-@media screen and (max-height: 400px) {
-    .modal-content {
+    #exampleModal2 .modal-content {
         height: 50%;
     }
+    
+}
+
+@media screen and (max-height: 500px) {
+    #exampleModal .modal-content {
+        height: 70%;
+    }
+
+    #exampleModal2 .modal-content {
+        height: 60%;
+    }
+    
 }
 
 .close {
@@ -410,6 +409,7 @@ textarea {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     display: none;
+    z-index: 9999;
 }
 
 .message-box.show {

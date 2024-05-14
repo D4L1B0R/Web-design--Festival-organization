@@ -2,13 +2,14 @@ document.addEventListener("DOMContentLoaded", function() {
     const firebasedatabase3 = "https://evento-13796-default-rtdb.europe-west1.firebasedatabase.app";
     const xhttplogins = new XMLHttpRequest();
     let isLoggedIn = false;
+    let messageBox = document.getElementById("message-box");
 
     document.addEventListener("submit", function(event) {
+        event.preventDefault();
         if (event.target && event.target.id === "loginForm") {
             if (isLoggedIn) {
                 console.log("Odjava uspešna!");
                 $('#exampleModal2').modal('hide');
-                let messageBox = document.getElementById("message-box");
                 messageBox.textContent = "Uspešno ste se odjavili!";
                 messageBox.classList.add("show");
                 setTimeout(function () {
@@ -17,9 +18,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 isLoggedIn = false;
                 document.getElementById("login-btn").textContent = "Prijavi se";
             } else {
-            event.preventDefault();
-            console.log("Handling login form submission...");
-            handleFormLoginSubmission();
+                console.log("Handling login form submission...");
+                handleFormLoginSubmission();
             }
         }
     });
@@ -42,7 +42,6 @@ document.addEventListener("DOMContentLoaded", function() {
                         if (!isLoggedIn && formData.korisnickoIme == user_obj.korisnickoIme && formData.lozinka == user_obj.lozinka) {
                             console.log("Prijava uspešna!");
                             $('#exampleModal2').modal('hide');
-                            let messageBox = document.getElementById("message-box");
                             messageBox.textContent = "Uspešno ste se prijavili " + formData.korisnickoIme + "!";
                             messageBox.classList.add("show");
                             setTimeout(function () {
@@ -52,17 +51,17 @@ document.addEventListener("DOMContentLoaded", function() {
                             document.getElementById("password").value = "",
                             isLoggedIn = true;
                             document.getElementById("login-btn").textContent = "Odjava";
+                            break;
                         } else {
                             $('#exampleModal2').modal('hide');
                             console.log("Pogrešno korisničko ime ili lozinka");
-                            let messageBox = document.getElementById("message-box");
                             messageBox.textContent = "Nepostojeći korisnik!";
                             messageBox.classList.add("show");
                             setTimeout(function () {
                                 messageBox.classList.remove("show");
                             }, 5000);
                         }
-                }
+                    }
                 } else {
                     console.error("Error:", this.status);
                     window.location.href = '/html/Greška.html';

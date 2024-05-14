@@ -74,6 +74,7 @@
                             <div class="mb-3">
                                 <label for="reg-datumRodjenja" class="form-label">Datum Rođenja:</label>
                                 <input type="date" class="form-control" id="reg-datumRodjenja" name="datumRodjenja" required>
+                                <div id="yearErrorReg" class="error-message"></div>
                             </div>
                             <div class="mb-3">
                                 <label for="reg-adresa" class="form-label">Adresa:</label>
@@ -103,7 +104,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title2" id="exampleModalLabel">Prijava</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <button type="button" class="close" data-dismiss="modal" id="login-btn" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -115,7 +116,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="password">Lozinka:</label>
-                                <input type="password" class="form-control" id="password" name="password" required>
+                                <input type="password" class="form-control" id="password" name="password">
                             </div>
                             <div class="modal-footer">
                                 <button type="submit" class="btn btn-secondary">Prijavi se</button>
