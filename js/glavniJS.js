@@ -5,9 +5,21 @@ document.addEventListener("DOMContentLoaded", function() {
 
     document.addEventListener("submit", function(event) {
         if (event.target && event.target.id === "loginForm") {
+            if (isLoggedIn) {
+                console.log("Odjava uspešna!");
+                let messageBox = document.getElementById("message-box");
+                messageBox.textContent = "Uspešno ste se odjavili!";
+                messageBox.classList.add("show");
+                setTimeout(function () {
+                    messageBox.classList.remove("show");
+                }, 5000);
+                isLoggedIn = false;
+                document.getElementById("login-btn").textContent = "Prijavi se";
+            } else {
             event.preventDefault();
             console.log("Handling login form submission...");
             handleFormLoginSubmission();
+            }
         }
     });
 
@@ -34,18 +46,10 @@ document.addEventListener("DOMContentLoaded", function() {
                             setTimeout(function () {
                                 messageBox.classList.remove("show");
                             }, 5000);
+                            document.getElementById("username").value = "";
+                            document.getElementById("password").value = "",
                             isLoggedIn = true;
                             document.getElementById("login-btn").textContent = "Odjava";
-                        } else if (isLoggedIn) {
-                            console.log("Odjava uspešna!");
-                            let messageBox = document.getElementById("message-box");
-                            messageBox.textContent = "Uspešno ste se odjavili " + formData.korisnickoIme + "!";
-                            messageBox.classList.add("show");
-                            setTimeout(function () {
-                                messageBox.classList.remove("show");
-                            }, 5000);
-                            isLoggedIn = false;
-                            document.getElementById("login-btn").textContent = "Prijava";
                         } else {
                             console.log("Pogrešno korisničko ime ili lozinka");
                             let messageBox = document.getElementById("message-box");
