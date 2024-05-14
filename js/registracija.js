@@ -18,7 +18,7 @@ function validateEmailReg(email) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
-function validateAddress(address) {
+function validateAddressReg(address) {
     return /^[A-Za-z0-9\s.,\-/]+,\s*[A-Za-z\s]+,\s*\d{5}$/.test(address);
 }
 
@@ -54,19 +54,19 @@ function handleFormRegistrationSubmission(firebasedatabaseUsers_obj) {
             document.getElementById("yearErrorReg").innerText = "Molimo unesite validnu godinu.";
             return;
         }
-        if (!validatePhone(formData.telefon)) {
+        if (!validatePhoneReg(formData.telefon)) {
             document.getElementById("phoneErrorReg").innerText = "Molimo unesite validan broj telefona.";
             return;
         } else {
             document.getElementById("phoneErrorReg").innerText = "";
         }
-        if (!validateEmail(formData.email)) {
+        if (!validateEmailReg(formData.email)) {
             document.getElementById("emailErrorReg").innerText = "Molimo unesite validnu email adresu.";
             return;
         } else {
             document.getElementById("emailErrorReg").innerText = "";
         }
-        if (!validateAddress(formData.adresa)) {
+        if (!validateAddressReg(formData.adresa)) {
         console.log("Invalid address");
         document.getElementById("addressErrorReg").innerText = "Molimo unesite validnu adresu formata (ulica i broj, mesto/grad, poštanski broj).";
         return;

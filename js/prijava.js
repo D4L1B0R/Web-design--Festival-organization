@@ -44,6 +44,13 @@ document.addEventListener("DOMContentLoaded", function() {
                         }, 5000);
                     } else {
                         console.log("Pogrešno korisničko ime ili lozinka");
+                        $('#exampleModal2').modal('hide');
+                        let messageBox = document.getElementById("message-box");
+                        messageBox.textContent = "Nepostojeći korisnik!";
+                        messageBox.classList.add("show");
+                        setTimeout(function () {
+                            messageBox.classList.remove("show");
+                        }, 5000);
                     }
                 } else {
                     console.error("Error:", this.status);
