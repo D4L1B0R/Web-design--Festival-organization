@@ -54,7 +54,7 @@ function updateDataInFirebase(formData, orgFestivali) {
                 window.location.href = '/html/Organizatori.html';
             } else {
                 console.error("Error:", this.status);
-                window.location.href = './html/Greška.html';
+                window.location.href = '/html/Greška.html';
             }
         }
     };

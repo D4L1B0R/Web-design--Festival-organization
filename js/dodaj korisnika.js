@@ -1,4 +1,6 @@
 const firebasedatabase12 = "https://evento-13796-default-rtdb.europe-west1.firebasedatabase.app";
+const firebasedatabaseUsers = "https://evento-13796-default-rtdb.europe-west1.firebasedatabase.app/korisnici.json";
+
 document.getElementById("userForms").addEventListener("submit", function(event) {
     const formInputs = Array.from(this.querySelectorAll("input"));
     const allInputsFilled = formInputs.every(input => input.value !== "");
@@ -19,18 +21,39 @@ function validatePhone(phone) {
 function validateEmail(email) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
+function validateAddress(address) {
+    return /^[A-Za-z0-9\s.,\-/]+,\s*[A-Za-z\s]+,\s*\d{5}$/.test(address);
+}
 
 function handleFormSubmission() {
     let formData = {
         korisnickoIme: document.getElementById("korisnickoIme4").value,
-          ime: document.getElementById("ime4").value,
-          prezime: document.getElementById("prezime4").value,
-          email: document.getElementById("email4").value,
-          datumRodjenja: document.getElementById("datumRodjenja4").value,
-          adresa: document.getElementById("adresa4").value,
-          telefon: document.getElementById("telefon4").value,
-          zanimanje: document.getElementById("zanimanje4").value,
+        ime: document.getElementById("ime4").value,
+        prezime: document.getElementById("prezime4").value,
+        email: document.getElementById("email4").value,
+        datumRodjenja: document.getElementById("datumRodjenja4").value,
+        adresa: document.getElementById("adresa4").value,
+        telefon: document.getElementById("telefon4").value,
+        zanimanje: document.getElementById("zanimanje4").value,
     };
+    const currentYear = new Date().getFullYear();
+    const yearRegex = /\b\d{4}\b/;
+
+    let firebasedatabaseUsers_obj = JSON.parse(firebasedatabaseUsers);
+    for (let user in firebasedatabaseUsers_obj) {
+        if (formData.korisnickoIme === user.korisnickoIme) {
+            console.log("Korisničko ime već postoji.");
+            document.getElementById("usernameError").innerText = "Korisničko ime već postoji.";
+            return;
+        }
+    }
+    if (yearRegex.test(formData.datumRodjenja) && parseInt(formData.datumRodjenja) <= currentYear) {
+        console.log("Valid year");
+        document.getElementById("yearError").innerText = "";
+    } else {
+        console.log("Invalid year");
+        document.getElementById("yearError").innerText = "Molimo unesite validnu godinu.";
+    }
     if (!validatePhone(formData.telefon)) {
         document.getElementById("phoneError").innerText = "Molimo unesite validan broj telefona.";
         return;
@@ -44,6 +67,14 @@ function handleFormSubmission() {
     } else {
         document.getElementById("emailError").innerText = "";
     }
+    if (!validateAddress(formData.adresa)) {
+        console.log("Invalid address");
+        document.getElementById("addressError").innerText = "Molimo unesite validnu adresu formata (ulica i broj, mesto/grad, poštanski broj).";
+        return;
+    } else {
+        document.getElementById("addressError").innerText = "";
+    }
+    
 
     updateDataInFirebase(formData);
 }
@@ -62,7 +93,7 @@ function updateDataInFirebase(formData) {
                 window.location.href = '/html/Korisnici.html';
             } else {
                 console.error("Error:", this.status);
-                window.location.href = './html/Greška.html';
+                window.location.href = '/html/Greška.html';
             }
         }
     };

@@ -42,7 +42,7 @@ xhttp.onreadystatechange = function () {
       }
     } else {
       console.error("Error:", this.status);
-      window.location.href = './html/Greška.html';
+      window.location.href = '/html/Greška.html';
     }
   }
 };

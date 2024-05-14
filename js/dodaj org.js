@@ -1,8 +1,11 @@
 const firebasedatabase = "https://evento-13796-default-rtdb.europe-west1.firebasedatabase.app";
 
-document.getElementById("submit-btn").addEventListener("submit", function(event) {
+document.getElementById("form-container").addEventListener("submit", function(event) {
     event.preventDefault();
-    handleFormSubmission();
+    const submittedForm = event.target.closest('form');
+    if (submittedForm.id === "orgForm") {
+        handleFormSubmission(submittedForm);
+    }
 });
 
 function validatePhone(phone) {
@@ -21,12 +24,25 @@ function handleFormSubmission() {
     let formData = {
         naziv: document.getElementById("naziv").value,
         adresa: document.getElementById("adresa").value,
-        godinaRodjenja: document.getElementById("godinaRodjenja").value,
+        godinaOsnivanja: document.getElementById("godinaRodjenja").value,
         telefon: document.getElementById("telefon").value,
-        email: document.getElementById("em").value,
+        email: document.getElementById("email").value,
         logo: document.getElementById("logo").value,
+        festivali: "",
     };
+
+    const currentYear = new Date().getFullYear();
+    const yearRegex = /\b\d{4}\b/;
+
+    if (yearRegex.test(formData.godinaOsnivanja) && parseInt(formData.godinaOsnivanja) <= currentYear) {
+        console.log("Valid year");
+        document.getElementById("yearError").innerText = "";
+    } else {
+        console.log("Invalid year");
+        document.getElementById("yearError").innerText = "Molimo unesite validnu godinu.";
+    }
     if (!validatePhone(formData.telefon)) {
+        console.log("Invalid phone number");
         document.getElementById("phoneError").innerText = "Molimo unesite validan broj telefona u formatu 123/4567-890.";
         return;
     } else {
@@ -34,6 +50,7 @@ function handleFormSubmission() {
     }
 
     if (!validateEmail(formData.email)) {
+        console.log("Invalid email");
         document.getElementById("emailError").innerText = "Molimo unesite validnu email adresu.";
         return;
     } else {
@@ -41,6 +58,7 @@ function handleFormSubmission() {
     }
 
     if (!validateAddress(formData.adresa)) {
+        console.log("Invalid address");
         document.getElementById("addressError").innerText = "Molimo unesite validnu adresu formata (ulica i broj, mesto/grad, poštanski broj).";
         return;
     } else {
@@ -55,16 +73,11 @@ function updateDataInFirebase(formData) {
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4) {
             if (this.status == 200) {
-                console.log("Naziv: " + formData.naziv);
-                console.log("Adresa: " + formData.adresa);
-                console.log("Godina rodjenja: " + formData.godinaRodjenja);
-                console.log("Telefon: " + formData.telefon);
-                console.log("Email: " + formData.email);
-                console.log("Logo: " + formData.logo);
+                console.log("Form data submitted successfully!");
                 window.location.href = '/html/Organizatori.html';
             } else {
                 console.error("Error:", this.status);
-                window.location.href = './html/Greška.html';
+                window.location.href = '/html/Greška.html';
             }
         }
     };

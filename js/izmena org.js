@@ -41,10 +41,12 @@ function createCard(organizator, obj) {
     <div class="mb-3">
         <label for="adresa" class="form-label">Adresa:</label>
         <input type="text" class="form-control" id="adresa" name="adresa" placeholder="${organizator["adresa"]}">
+        <div id="addressError" class="error-message"></div>
     </div>
     <div class="mb-3">
         <label for="godinaOsnivanja" class="form-label">Godina osnivanja:</label>
         <input type="text" class="form-control" id="godinaOsnivanja" name="godinaOsnivanja" placeholder="${organizator["godinaOsnivanja"]}">
+        <div id="yearError" class="error-message"></div>
     </div>
     <div class="mb-3">
         <label for="kontaktTelefon" class="form-label">Kontakt telefon:</label>
@@ -73,6 +75,9 @@ function createCard(organizator, obj) {
   function validateEmail(email) {
       return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   }
+  function validateAddress(address) {
+    return /^[A-Za-z0-9\s.,\-/]+,\s*[A-Za-z\s]+,\s*\d{5}$/.test(address);
+}
   
   function handleFormSubmission() {
     document.querySelectorAll('input[type="text"], input[type="tel"], input[type="email"]').forEach(input => {
@@ -89,20 +94,37 @@ function createCard(organizator, obj) {
           logo: organizator["logo"],
           festivali: organizator["festivali"]
       };
-  
-      if (!validatePhone(formData.kontaktTelefon)) {
-          document.getElementById("phoneError").innerText = "Molimo unesite validan broj telefona u formatu 123/4567-890.";
-          return;
-      } else {
-          document.getElementById("phoneError").innerText = "";
-      }
-      if (!validateEmail(formData.email)) {
-          document.getElementById("emailError").innerText = "Molimo unesite validnu email adresu.";
-          return;
-      } else {
-          document.getElementById("emailError").innerText = "";
-      }
-  
+      
+    const currentYear = new Date().getFullYear();
+    const yearRegex = /\b\d{4}\b/;
+
+    if (yearRegex.test(formData.godinaOsnivanja) && parseInt(formData.godinaOsnivanja) <= currentYear) {
+        console.log("Valid year");
+        document.getElementById("yearError").innerText = "";
+    } else {
+        console.log("Invalid year");
+        document.getElementById("yearError").innerText = "Molimo unesite validnu godinu.";
+    }
+    if (!validatePhone(formData.kontaktTelefon)) {
+        document.getElementById("phoneError").innerText = "Molimo unesite validan broj telefona u formatu 123/4567-890.";
+        return;
+    } else {
+        document.getElementById("phoneError").innerText = "";
+    }
+    if (!validateEmail(formData.email)) {
+        document.getElementById("emailError").innerText = "Molimo unesite validnu email adresu.";
+        return;
+    } else {
+        document.getElementById("emailError").innerText = "";
+    }
+    if (!validateAddress(formData.adresa)) {
+        console.log("Invalid address");
+        document.getElementById("addressError").innerText = "Molimo unesite validnu adresu formata (ulica i broj, mesto/grad, poštanski broj).";
+        return;
+    } else {
+        document.getElementById("addressError").innerText = "";
+    }
+
       updateDataInFirebase(formData);
     }  
 
@@ -127,7 +149,7 @@ function createCard(organizator, obj) {
                         }, 5000);
                 } else {
                     console.error("Error:", this.status);
-                    window.location.href = './html/Greška.html';
+                    window.location.href = '/html/Greška.html';
                 }
             }
         };

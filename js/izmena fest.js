@@ -49,12 +49,22 @@ function create(festival) {
             <input type="text" class="form-control" id="naziv" name="naziv" placeholder="${festival["naziv"]}">
         </div>
         <div class="mb-3">
-            <label for="tip" class="form-label">Tip:</label>
-            <input type="text" class="form-control" id="tip" name="tip" placeholder="${festival["tip"]}">
+            <select id="tip">
+                <option disabled selected value="">-- Izaberite tip --</option>
+                <option value="muzicki">Muzički</option>
+                <option value="umetnicki">Umetnički</option>
+                <option value="filmski">Filmski</option>
+                <option value="gastronomski">Gastronomski</option>
+                <option value="edukativni">Edukativni</option>
+            </select>
         </div>
         <div class="mb-3">
-            <label for="prevoz" class="form-label">Prevoz:</label>
-            <input type="text" class="form-control" id="prevoz" name="prevoz" placeholder="${festival["prevoz"]}">
+            <select id="prevoz">
+                <option disabled selected value="">-- Izaberite prevoz --</option>
+                <option value="avion">Avion</option>
+                <option value="autobus">Autobus</option>
+                <option value="sopstveni">Sopstveni prevoz</option>
+            </select>    
         </div>
         <div class="mb-3">
             <label for="cena" class="form-label">Cena (RSD):</label>
@@ -87,7 +97,7 @@ function create(festival) {
     });
 
 function handleFormSubmission() {
-  document.querySelectorAll('input[type="text"], input[id="cena"], input[id="maxOsoba"], textarea').forEach(input => {
+  document.querySelectorAll('input[type="text"], input[id="cena"], input[id="maxOsoba"], textarea', 'select').forEach(input => {
     if (!input.value && input.getAttribute("placeholder")) {
         input.value = input.getAttribute("placeholder");
     }
@@ -142,7 +152,7 @@ function updateDataInFirebase(data) {
                 }, 5000);
             } else {
                 console.error("Error:", this.status);
-                window.location.href = './html/Greška.html';
+                window.location.href = '/html/Greška.html';
             }
         }
     };

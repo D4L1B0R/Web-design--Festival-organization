@@ -209,7 +209,7 @@ function createFest(festivals, org_fest) {
                 console.log("Festival uspešno obrisan!");
             } else {
                 console.error("Error:", this.status);
-                window.location.href = './html/Greška.html';
+                window.location.href = '/html/Greška.html';
             }
         }
     };

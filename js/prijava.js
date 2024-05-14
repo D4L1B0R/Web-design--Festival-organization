@@ -1,11 +1,3 @@
-//pokretanje funkcije za učitavanje video snimka
-function openModal() {
-    document.getElementById('videoModal').style.display = 'block';
-}
-function closeModal() {
-    document.getElementById('videoModal').style.display = 'none';
-}
-
 const firebasedatabase3 = "https://evento-13796-default-rtdb.europe-west1.firebasedatabase.app";
 
 document.getElementById("form-container").addEventListener("submit", function(event) {
@@ -33,12 +25,13 @@ function updateDataInFirebaseLogin(formData) {
                 for (let user in formData) {
                     if (formData.korisnickoIme === user.korisnickoIme && formData.lozinka === user.lozinka) {
                         console.log("Prijava uspešna!");
-                        let messageBox = document.getElementById("message-box");
-                        messageBox.textContent = "Uspešno ste se prijavili " + formData.korisnickoIme + "!";
-                        messageBox.classList.add("show");
-                        setTimeout(function () {
-                            messageBox.classList.remove("show");
-                        }, 5000);
+                        $('#exampleModal2').modal('hide');
+                            let messageBox = document.getElementById("message-box");
+                            messageBox.textContent = "Uspešno ste se prijavili " + formData.korisnickoIme + "!";
+                            messageBox.classList.add("show");
+                            setTimeout(function () {
+                                messageBox.classList.remove("show");
+                            }, 5000);
                         isLoggedIn = true;
                         document.getElementById("loginButton").textContent = "Odjava";
                     }
