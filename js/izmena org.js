@@ -80,7 +80,7 @@ function createCard(organizator, obj) {
 }
   
     function handleFormSubmission() {
-        document.querySelectorAll('input[type="text"], input[type="tel"], input[type="email"]', 'input[type="date"]').forEach(input => {
+        document.querySelectorAll('input[type="text"], input[type="tel"], input[type="email"]').forEach(input => {
             if (!input.value && input.getAttribute("placeholder")) {
                 input.value = input.getAttribute("placeholder");
             }
