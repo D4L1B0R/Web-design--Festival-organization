@@ -93,7 +93,7 @@ function create(korisnik, obj_kor, korisnici) {
     }
   
   function handleFormSubmission(korisnik) {
-    document.querySelectorAll('input[type="text"], input[type="tel"], input[type="email"]').forEach(input => {
+    document.querySelectorAll('input[type="text"], input[type="tel"], input[type="email"]', 'input[type="date"]').forEach(input => {
         if (!input.value && input.getAttribute("placeholder")) {
             input.value = input.getAttribute("placeholder");
         }
