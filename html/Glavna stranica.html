@@ -232,25 +232,19 @@
                         element.classList.add('highlight');
                     } else if (searchTerm == '') {
                         element.classList.remove('highlight');
+                        element.closest('.card').style.display = 'block';
                     } else {
                         element.classList.remove('highlight');
+                        element.closest('.card').style.display = 'none';
                     }
                 });
             };
-    
-            function clearHighlights() {
-                var contentElements = document.querySelectorAll('.content p');
-                contentElements.forEach(function(element, index) {
-                    element.classList.remove('highlight');
-                });
 
             function openModal() {
                 document.getElementById('videoModal').style.display = 'block';
             }
             function closeModal() {
                 document.getElementById('videoModal').style.display = 'none';
-            }
-
             }
         </script>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

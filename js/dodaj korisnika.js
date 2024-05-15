@@ -58,37 +58,37 @@ function handleFormSubmission(firebasedatabaseUsers_obj) {
             return;
         }
     }
+    notValid = true;
     if (yearRegex.test(formData.datumRodjenja) && parseInt(formData.datumRodjenja) <= currentYear) {
         console.log("Valid year");
         document.getElementById("yearError").innerText = "";
     } else {
         console.log("Invalid year");
         document.getElementById("yearError").innerText = "Molimo unesite validnu godinu.";
-        return;
+        notValid = false;
     }
     if (!validatePhone(formData.telefon)) {
         document.getElementById("phoneError").innerText = "Molimo unesite validan broj telefona.";
-        return;
+        notValid = false;
     } else {
         document.getElementById("phoneError").innerText = "";
     }
-
     if (!validateEmail(formData.email)) {
         document.getElementById("emailError").innerText = "Molimo unesite validnu email adresu.";
-        return;
+        notValid = false;
     } else {
         document.getElementById("emailError").innerText = "";
     }
     if (!validateAddress(formData.adresa)) {
         console.log("Invalid address");
         document.getElementById("addressError").innerText = "Molimo unesite validnu adresu formata (ulica i broj, mesto/grad, poštanski broj).";
-        return;
+        notValid = false;
     } else {
         document.getElementById("addressError").innerText = "";
     }
-    
-
-    updateDataInFirebase(formData);
+    if (notValid) {
+        updateDataInFirebase(formData);
+    }
 }
 
 function updateDataInFirebase(formData) {

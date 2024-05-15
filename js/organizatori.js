@@ -54,20 +54,20 @@ function createAcordion(org, obj, data) {
   card.classList.add("cards");
   card.innerHTML =`
   <div class="accordion-item">
-    <h2 class="accordion-header">
-    <div class="row">
-        <div class="col-10 my-auto">
-            <a style="text-decoration: none; font-weight: bold; font-size: 13px; color: black; margin-left: 10px;" href="./festivali/festival.html?organizator=${data}&festival=${obj}">${org["naziv"]}</a>
-        </div>
-        <div class="col-2">
-            <button class="accordion-button rounded" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${obj}" aria-expanded="true" aria-controls="collapse${obj}"></button>
-        </div>
+    <div class="accordion-header">
+      <div class="row">
+          <div class="col-10 my-auto">
+              <a class="content1" style="text-decoration: none; font-weight: bold; font-size: 13px; color: black; margin-left: 10px;" href="./festivali/festival.html?organizator=${data}&festival=${obj}">${org["naziv"]}</a>
+          </div>
+          <div class="col-2">
+              <button class="accordion-button rounded" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${obj}" aria-expanded="true" aria-controls="collapse${obj}"></button>
+          </div>
+      </div>
     </div>
-    </h2>
     <div id="collapse${obj}" class="accordion-collapse collapse" aria-labelledby="heading${obj}" data-bs-parent="festival">
         <div class="accordion-body">
             <p>${org["opis"]}</p>
-            <p>Tip: ${org["tip"]}</p>
+            <p>Tip: <span class="content2">${org["tip"]}<span></p>
             <p>Prevoz: ${org["prevoz"]}</p>
             <p>Cena: ${org["cena"]}</p>
             <p>Max Osoba: ${org["maxOsoba"]}</p>

@@ -34,17 +34,19 @@ function handleFormSubmission() {
     const currentYear = new Date().getFullYear();
     const yearRegex = /\b\d{4}\b/;
 
+    let notValid = true;
     if (yearRegex.test(formData.godinaOsnivanja) && parseInt(formData.godinaOsnivanja) <= currentYear) {
         console.log("Valid year");
         document.getElementById("yearError").innerText = "";
     } else {
         console.log("Invalid year");
         document.getElementById("yearError").innerText = "Molimo unesite validnu godinu.";
+        notValid = false;
     }
     if (!validatePhone(formData.telefon)) {
         console.log("Invalid phone number");
         document.getElementById("phoneError").innerText = "Molimo unesite validan broj telefona u formatu 123/4567-890.";
-        return;
+        notValid = false;
     } else {
         document.getElementById("phoneError").innerText = "";
     }
@@ -52,7 +54,7 @@ function handleFormSubmission() {
     if (!validateEmail(formData.email)) {
         console.log("Invalid email");
         document.getElementById("emailError").innerText = "Molimo unesite validnu email adresu.";
-        return;
+        notValid = false;
     } else {
         document.getElementById("emailError").innerText = "";
     }
@@ -60,12 +62,13 @@ function handleFormSubmission() {
     if (!validateAddress(formData.adresa)) {
         console.log("Invalid address");
         document.getElementById("addressError").innerText = "Molimo unesite validnu adresu formata (ulica i broj, mesto/grad, poštanski broj).";
-        return;
+        notValid = false;
     } else {
         document.getElementById("addressError").innerText = "";
     }
-
-    updateDataInFirebase(formData);
+    if (notValid) {
+        updateDataInFirebase(formData);
+    }
 }
 
 function updateDataInFirebase(formData) {

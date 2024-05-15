@@ -79,53 +79,55 @@ function createCard(organizator, obj) {
     return /^[A-Za-z0-9\s.,\-/]+,\s*[A-Za-z\s]+,\s*\d{5}$/.test(address);
 }
   
-  function handleFormSubmission() {
-    document.querySelectorAll('input[type="text"], input[type="tel"], input[type="email"]').forEach(input => {
-        if (!input.value && input.getAttribute("placeholder")) {
-            input.value = input.getAttribute("placeholder");
+    function handleFormSubmission() {
+        document.querySelectorAll('input[type="text"], input[type="tel"], input[type="email"]').forEach(input => {
+            if (!input.value && input.getAttribute("placeholder")) {
+                input.value = input.getAttribute("placeholder");
+            }
+        });
+        let formData = {
+            naziv: document.getElementById("naziv").value,
+            adresa: document.getElementById("adresa").value,
+            godinaOsnivanja: document.getElementById("godinaOsnivanja").value,
+            kontaktTelefon: document.getElementById("kontaktTelefon").value,
+            email: document.getElementById("em").value,
+            logo: organizator["logo"],
+            festivali: organizator["festivali"]
+        };
+        
+        const currentYear = new Date().getFullYear();
+        const yearRegex = /\b\d{4}\b/;
+        let notValid = true;
+        if (yearRegex.test(formData.godinaOsnivanja) && parseInt(formData.godinaOsnivanja) <= currentYear) {
+            console.log("Valid year");
+            document.getElementById("yearError").innerText = "";
+        } else {
+            console.log("Invalid year");
+            document.getElementById("yearError").innerText = "Molimo unesite validnu godinu.";
+            notValid = false;
         }
-    });
-      let formData = {
-          naziv: document.getElementById("naziv").value,
-          adresa: document.getElementById("adresa").value,
-          godinaOsnivanja: document.getElementById("godinaOsnivanja").value,
-          kontaktTelefon: document.getElementById("kontaktTelefon").value,
-          email: document.getElementById("em").value,
-          logo: organizator["logo"],
-          festivali: organizator["festivali"]
-      };
-      
-    const currentYear = new Date().getFullYear();
-    const yearRegex = /\b\d{4}\b/;
-
-    if (yearRegex.test(formData.godinaOsnivanja) && parseInt(formData.godinaOsnivanja) <= currentYear) {
-        console.log("Valid year");
-        document.getElementById("yearError").innerText = "";
-    } else {
-        console.log("Invalid year");
-        document.getElementById("yearError").innerText = "Molimo unesite validnu godinu.";
-    }
-    if (!validatePhone(formData.kontaktTelefon)) {
-        document.getElementById("phoneError").innerText = "Molimo unesite validan broj telefona u formatu 123/4567-890.";
-        return;
-    } else {
-        document.getElementById("phoneError").innerText = "";
-    }
-    if (!validateEmail(formData.email)) {
-        document.getElementById("emailError").innerText = "Molimo unesite validnu email adresu.";
-        return;
-    } else {
-        document.getElementById("emailError").innerText = "";
-    }
-    if (!validateAddress(formData.adresa)) {
-        console.log("Invalid address");
-        document.getElementById("addressError").innerText = "Molimo unesite validnu adresu formata (ulica i broj, mesto/grad, poštanski broj).";
-        return;
-    } else {
-        document.getElementById("addressError").innerText = "";
-    }
-
-      updateDataInFirebase(formData);
+        if (!validatePhone(formData.kontaktTelefon)) {
+            document.getElementById("phoneError").innerText = "Molimo unesite validan broj telefona u formatu 123/4567-890.";
+            notValid = false;
+        } else {
+            document.getElementById("phoneError").innerText = "";
+        }
+        if (!validateEmail(formData.email)) {
+            document.getElementById("emailError").innerText = "Molimo unesite validnu email adresu.";
+            notValid = false;
+        } else {
+            document.getElementById("emailError").innerText = "";
+        }
+        if (!validateAddress(formData.adresa)) {
+            console.log("Invalid address");
+            document.getElementById("addressError").innerText = "Molimo unesite validnu adresu formata (ulica i broj, mesto/grad, poštanski broj).";
+            notValid = false;
+        } else {
+            document.getElementById("addressError").innerText = "";
+        }
+        if (notValid) {
+            updateDataInFirebase(formData);
+        }
     }  
 
     function updateDataInFirebase(data) {

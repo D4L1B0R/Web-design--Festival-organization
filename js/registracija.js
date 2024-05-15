@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
     const firebasedatabase4 = "https://evento-13796-default-rtdb.europe-west1.firebasedatabase.app";
-    const xhttpreg = new XMLHttpRequest();
 
     document.addEventListener("submit", function(event) {
         if (event.target && event.target.id === "regForms") {
@@ -46,35 +45,37 @@ function handleFormRegistrationSubmission(firebasedatabaseUsers_obj) {
                 return;
             }
         }
+        let notValid = true;
         if (yearRegex.test(formData.datumRodjenja) && parseInt(formData.datumRodjenja) <= currentYear) {
             console.log("Valid year");
             document.getElementById("yearErrorReg").innerText = "";
         } else {
             console.log("Invalid year");
             document.getElementById("yearErrorReg").innerText = "Molimo unesite validnu godinu.";
-            return;
+            notValid = false;
         }
         if (!validatePhoneReg(formData.telefon)) {
             document.getElementById("phoneErrorReg").innerText = "Molimo unesite validan broj telefona.";
-            return;
+            notValid = false;
         } else {
             document.getElementById("phoneErrorReg").innerText = "";
         }
         if (!validateEmailReg(formData.email)) {
             document.getElementById("emailErrorReg").innerText = "Molimo unesite validnu email adresu.";
-            return;
+            notValid = false;
         } else {
             document.getElementById("emailErrorReg").innerText = "";
         }
         if (!validateAddressReg(formData.adresa)) {
         console.log("Invalid address");
         document.getElementById("addressErrorReg").innerText = "Molimo unesite validnu adresu formata (ulica i broj, mesto/grad, poštanski broj).";
-        return;
+        notValid = false;
         } else {
             document.getElementById("addressErrorReg").innerText = "";
         }
-
-    updateDataInFirebaseReg(formData);
+    if (notValid) {
+        updateDataInFirebaseReg(formData);
+    }
 }
 
 function updateDataInFirebaseReg(formData) {

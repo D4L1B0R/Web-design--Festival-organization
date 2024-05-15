@@ -38,6 +38,10 @@
                 </ul>
                 <button type="button" class="btn-sign" data-toggle="modal" data-target="#exampleModal2">Prijava</button>
                 <button type="button" class="btn-reg" data-toggle="modal" data-target="#exampleModal">Registracija</button>
+                <form class="form-inline my-2 my-lg-0 mx-2" onsubmit="return false;">
+                    <input class="form-control mr-sm-2" type="search" id="searchInput" placeholder="Pretražite festival..." aria-label="Search">
+                </form>
+                <button class="btn btn-outline-success my-2 my-sm-0" id="find-btn" type="button" onclick="highlight()">Pronađite</button>
             </div>
         </nav>
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -136,8 +140,50 @@
             <div class="accordion" id="festivali" style="margin-bottom: 100px;">
             </div>
         </div>
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
+        <script>
+            var originalContent = '';
+    
+            function highlight() {
+                var searchTerm = document.getElementById("searchInput").value.trim().toLowerCase();
+                var content1Elements = document.querySelectorAll('.content1');
+                var content2Elements = document.querySelectorAll('.content2');
+                if (document.getElementById("find-btn").textContent == "Pročistite" && searchTerm != '') {
+                    document.getElementById("find-btn").textContent = "Pronađite";
+                    document.getElementById("searchInput").value = '';
+                    content1Elements.forEach(function(element, index) {
+                        element.classList.remove('highlight');
+                        element.closest('.accordion-item').style.display = 'block';
+                    });
+
+                } else if (document.getElementById("find-btn").textContent == "Pronađite" && searchTerm != '') {
+                    originalContent = Array.from(content1Elements).map(element => element.innerHTML);
+                    content1Elements.forEach(function(element) {
+                        var content = element.textContent.toLowerCase();
+                        if (content.includes(searchTerm) && searchTerm != '') {
+                            element.classList.add('highlight');
+                        } else if (searchTerm == '') {
+                            element.classList.remove('highlight');
+                            element.closest('.accordion-item').style.display = 'block';
+                        } else {
+                            element.classList.remove('highlight');
+                            element.closest('.accordion-item').style.display = 'none';
+                        }
+                    });
+                    originalContent = Array.from(content2Elements).map(element => element.innerHTML);
+                    content2Elements.forEach(function(element) {
+                        var content = element.textContent.toLowerCase();
+                        if (content.includes(searchTerm) && searchTerm != '') {
+                            element.classList.add('highlight');
+                        } else if (searchTerm == '') {
+                            element.classList.remove('highlight');
+                        } else {
+                            element.classList.remove('highlight');
+                        }
+                    });
+                    document.getElementById("find-btn").textContent = "Pročistite";
+                }
+            }
+        </script>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

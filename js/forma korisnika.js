@@ -17,6 +17,48 @@ xhttp.onreadystatechange = function () {
 xhttp.open("GET", firebaseDatabase + "/korisnici.json");
 xhttp.send();
 
+let userID;
+
+function confirmUser() {
+  let messageBox = document.getElementById("message-box");
+  $('#confirm-modal-user').modal('hide');
+  deleteUser(userID);
+  messageBox.textContent = "Korisnik je obrisan!";
+  messageBox.classList.add("show");
+  setTimeout(function() {
+      messageBox.classList.remove("show");
+  }, 5000);
+  console.log("OK je pritisnuto!");
+}
+
+function cancelUser() {
+  let messageBox = document.getElementById("message-box");
+  $('#confirm-modal-user').modal('hide');
+  messageBox.textContent = "Korisnik nije obrisan!";
+  messageBox.classList.add("show");
+  console.log("Cancel je pritisnuto!");
+  setTimeout(function() {
+      messageBox.classList.remove("show");
+  }, 5000);
+}
+
+function deleteUser(UserId) {
+  const xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function () {
+      if (this.readyState == 4) {
+          if (this.status == 200) {
+              console.log("Korisnik uspešno obrisan!");
+          } else {
+              console.error("Error:", this.status);
+              window.location.href = '/html/Greška.html';
+          }
+      }
+  };
+  xhttp.open("DELETE", firebaseDatabase + `/korisnici/${UserId}.json`);
+  xhttp.send();
+
+}
+
 function create(korisnik) {
   let brojKorisnika = 0;
   let innerHTML = `
@@ -75,44 +117,10 @@ function create(korisnik) {
       for (let obj in korisnik) {
         number +=1;
         if (i == number) {
-          geek(obj);
+          userID = obj;
+          $('#confirm-modal-user').modal('show');
         }
       }
     });
-  }
-
-  function geek(UserId) {
-    let messageBox = document.getElementById("message-box");
-    let result = confirm("Da li ste sigurni da želite da obrišete korisnika?");
-    if (result === true) {
-        deleteUser(UserId);
-        messageBox.textContent = "Korisnik je obrisan!";
-        messageBox.classList.add("show");
-        console.log("OK je pritisnuto!");
-    } else {
-        messageBox.textContent = "Korisnik nije obrisan!";
-        messageBox.classList.add("show");
-        console.log("Cancel je pritisnuto!");
-    }
-    setTimeout(function() {
-        messageBox.classList.remove("show");
-    }, 5000);
-  }
-
-  function deleteUser(UserId) {
-    const xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4) {
-            if (this.status == 200) {
-                console.log("Organizator uspešno obrisan!");
-            } else {
-                console.error("Error:", this.status);
-                window.location.href = '/html/Greška.html';
-            }
-        }
-    };
-    xhttp.open("DELETE", firebaseDatabase + `/korisnici/${UserId}.json`);
-    xhttp.send();
-  
   }
 };

@@ -56,7 +56,7 @@ html, body {
 .modal {
     display: none;
     position: fixed;
-    z-index: 9999; 
+    z-index: 9990; 
     left: 0;
     top: 0;
     width: 100%;
@@ -71,8 +71,21 @@ html, body {
     overflow: hidden;
     overflow: auto;
     transform: translate(-50%, -50%);
-    background-color: black;
+    color: black;
     width: 40%;
+    background-image: url('/slike/reg-pattern.avif');
+}
+
+#videoModal .modal-content {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    overflow: hidden;
+    overflow: auto;
+    height: 70%;
+    transform: translate(-50%, -50%);
+    background-color: black;
+    width: 80%;
 }
 
 @media screen and (max-height: 700px) {
@@ -418,4 +431,8 @@ textarea {
 
 .highlight {
     background-color: rgb(54, 157, 26);
+}
+
+.error-message {
+    color: red;
 }

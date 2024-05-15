@@ -111,20 +111,22 @@ function handleFormSubmission() {
         opis: document.getElementById("opis").value,
         slike: document.getElementById("slike").value.split(","),
     };
+    let notValid = true;
     if (!isNumeric(formData.cena)) {
       document.getElementById("priceError").innerText = "Cena mora biti numerička vrednost.";
-      return;
+      notValid = false;
     } else {
       document.getElementById("priceError").innerText = "";
     }
     if (!isNumeric(formData.maxOsoba)) {
       document.getElementById("numberError").innerText = "Molimo unesite numeričku vrednost.";
-      return;
+      notValid = false;
     } else {
       document.getElementById("numberError").innerText = "";
     }
-
-    updateDataInFirebase(formData);
+    if (notValid) {
+        updateDataInFirebase(formData);
+    }
 }
 
 function isNumeric(value) {
