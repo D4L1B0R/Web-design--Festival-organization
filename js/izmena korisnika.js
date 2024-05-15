@@ -16,7 +16,7 @@ xhttp.onreadystatechange = function () {
       for (let obj in data) {
         if (obj == korisnik) {
             let kor_obj = data[obj];
-            create(kor_obj, obj, data);
+            create(kor_obj, data);
         }
       }
     } else {
@@ -28,7 +28,7 @@ xhttp.onreadystatechange = function () {
 xhttp.open("GET", firebasedatabase + "/korisnici.json");
 xhttp.send();
 
-function create(korisnik, obj_kor, korisnici) {
+function create(korisnik, korisnici) {
   let innerHTML = `
   <h2 class="my-4">Izmena podataka</h2>
   <form id="userChangeForm" method="post" action="submit.php">
@@ -92,8 +92,8 @@ function create(korisnik, obj_kor, korisnici) {
         return /^[A-Za-z0-9\s.,\-/]+,\s*[A-Za-z\s]+,\s*\d{5}$/.test(address);
     }
   
-  function handleFormSubmission(korisnik) {
-    document.querySelectorAll('input[type="text"], input[type="tel"], input[type="email"]', 'input[type="date"]').forEach(input => {
+function handleFormSubmission(korisnik) {
+    document.querySelectorAll('input[type="text"], input[type="tel"], input[type="email"]').forEach(input => {
         if (!input.value && input.getAttribute("placeholder")) {
             input.value = input.getAttribute("placeholder");
         }
@@ -119,7 +119,7 @@ function create(korisnik, obj_kor, korisnici) {
                 return;
             }
         }
-        notValid = true;
+        let notValid = true;
         if (yearRegex.test(formData.datumRodjenja) && parseInt(formData.datumRodjenja) <= currentYear) {
             document.getElementById("yearError").innerText = "";
         } else {
@@ -147,13 +147,13 @@ function create(korisnik, obj_kor, korisnici) {
             document.getElementById("addressError").innerText = "";
         }
         if (notValid) {
-            updateDataInFirebase(formData, korisnik);
+            updateDataInFirebase(formData);
         }
     }  
 
     function updateDataInFirebase(data, korisnik) {
-        const xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function () {
+        const xhttp2 = new XMLHttpRequest();
+        xhttp2.onreadystatechange = function () {
             if (this.readyState == 4) {
                 if (this.status == 200) {
                   console.log("Korisničko ime: " + data.korisnickoIme);
@@ -177,7 +177,7 @@ function create(korisnik, obj_kor, korisnici) {
                 }
             }
         };
-        xhttp.open("PUT", firebasedatabase + "/korisnici/" + korisnik + `.json`);
-        xhttp.send(JSON.stringify(data));
+        xhttp2.open("PUT", firebasedatabase + "/korisnici/" + korisnik + `.json`);
+        xhttp2.send(JSON.stringify(data));
     }
 }

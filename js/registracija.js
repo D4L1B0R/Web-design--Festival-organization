@@ -79,8 +79,8 @@ function handleFormRegistrationSubmission(firebasedatabaseUsers_obj) {
 }
 
 function updateDataInFirebaseReg(formData) {
-    const xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function () {
+    const xhttpreg = new XMLHttpRequest();
+    xhttpreg.onreadystatechange = function () {
         if (this.readyState == 4) {
             if (this.status == 200) { 
                 console.log("Registracija uspešna!");
@@ -97,7 +97,7 @@ function updateDataInFirebaseReg(formData) {
             }
         }
     };
-    xhttp.open("POST", firebasedatabase4 + "/korisnici.json");
-    xhttp.send(JSON.stringify(formData));
+    xhttpreg.open("POST", firebasedatabase4 + "/korisnici.json");
+    xhttpreg.send(JSON.stringify(formData));
 }
 });
