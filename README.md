@@ -46,5 +46,4 @@ The project focuses on clean UI design, responsive layout, and front-end validat
 - **CSS3 / SASS**  
 - **Bootstrap**  
 - **JavaScript / jQuery**  
-- **React**  
 - **Firebase**
